@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CMStudio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0d1b2a;
+            color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff4d6d;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 14px;
+            right: 14px;
+            background: #0d1b2a;
+            padding: 18px;
+            border-radius: 12px;
+            z-index: 1050;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-nav a {
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 6px;
+            display: block;
+        }
+
+        .hero {
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)),
+                url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center/cover;
+            color: #fff;
+            text-align: center;
+            padding-top: 84px;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+        }
+
+        .section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section h3 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            font-weight: 800;
+            color: #0d1b2a;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info h4 {
+            color: #ff4d6d;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #ff4d6d;
+            outline: none;
+        }
+
+        .contact-form button {
+            background: #ff4d6d;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #e8415d;
+        }
+
+        .map-container {
+            margin-top: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        footer {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 40px 60px;
+            text-align: center;
+            border-top: 4px solid #ff4d6d;
+        }
+
+        footer h4 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #ff4d6d;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff4d6d;
+        }
+
+        @media (max-width:980px) {
+            header {
+                padding: 14px 30px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .section {
+                padding: 56px 28px;
+            }
+        }
+
+        @media (max-width:520px) {
+            .section {
+                padding: 40px 18px;
+            }
+
+            .hero h2 {
+                font-size: 1.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="CMStudio Logo" style="height:50px;">
+        </a>
+
+        <!-- Navigation -->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile toggle button -->
+        <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <section class="hero">
+        <h2>Contact Us</h2>
+    </section>
+
+    <section class="section">
+        <h3>Get in Touch</h3>
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h4>Contact Information</h4>
+                <p><i class="fas fa-envelope"></i> info@cmstudio.com</p>
+                <p><i class="fas fa-phone"></i> +27 81 840 1398</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mbombela, Mpumalanga, South Africa</p>
+                <h4>Follow Us</h4>
+                <p><i class="fab fa-facebook"></i> <a href="#">/CMStudio</a></p>
+                <p><i class="fab fa-twitter"></i> <a href="#">@CMStudio</a></p>
+                <p><i class="fab fa-instagram"></i> <a href="#">@CMStudio</a></p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+                <p id="formMsg" style="margin-top:10px;color:#ff4d6d;font-weight:600;"></p>
+            </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.890912148602!2d30.95923111500147!3d-25.46583098373026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec0eb34e3b5e469%3A0x123456789abcdef!2sMbombela%2C%20Mpumalanga%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1695090000000!5m2!1sen!2sza"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <h4>CMStudio</h4>
+        <p>📍 Mbombela, Mpumalanga, South Africa</p>
+        <p>
+            <i class="fas fa-envelope" style="color:#ff4d6d;margin-right:6px;"></i>
+            info@cmstudio.com &nbsp;&nbsp;
+            <i class="fas fa-phone" style="color:#ff4d6d;margin-right:6px;"></i>
+            +27 81 840 1398
+        </p>
+
+        <div>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
+        </div>
+        <p style="margin-top:20px;">© 2025 Creative Media Studios. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        navToggle.addEventListener('click', () => {
+            const open = mobileNav.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+            document.body.style.overflow = open ? 'hidden' : '';
+            navToggle.innerHTML = open ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('#mobile-nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Form feedback
+        const contactForm = document.getElementById('contactForm');
+        const formMsg = document.getElementById('formMsg');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formMsg.textContent = "Thank you! Your message has been sent.";
+            contactForm.reset();
+            setTimeout(() => formMsg.textContent = "", 5000);
+        });
+    </script>
+</body>
+
+</html>

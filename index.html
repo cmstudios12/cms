@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Media Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0d1b2a;
+      color: #fff;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #fff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ff4d6d;
+    }
+
+    /* mobile toggle */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 14px;
+      right: 14px;
+      background: #0d1b2a;
+      padding: 18px;
+      border-radius: 12px;
+      z-index: 1050;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
+    .mobile-nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav a {
+      color: #fff;
+      font-weight: 700;
+      padding: 8px 6px;
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)),
+        url('back.jpg') no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 0 20px;
+      padding-top: 84px;
+      /* leave space for fixed header */
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    #whatsappButton {
+      position: fixed;
+      bottom: 40px;
+      /* Adjust distance from bottom */
+      left: 30px;
+      /* Stick to left side */
+      z-index: 1000;
+      background-color: #25D366;
+      /* WhatsApp green */
+      color: #fff;
+      font-size: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+    }
+
+    #whatsappButton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+
+    #backToTop {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      z-index: 1000;
+      background: #ff4d6d;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    #backToTop:hover {
+      background: #ff2d55;
+      transform: translateY(-3px);
+    }
+
+
+    .btn {
+      background: #ff4d6d;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #e8415d;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 80px 60px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h3 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      font-weight: 800;
+      color: #0d1b2a;
+    }
+
+    #admin-spotlight {
+      position: relative;
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 60px auto;
+      overflow: hidden;
+    }
+
+    #admin-spotlight h3 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 50px;
+      color: #0d1b2a;
+      font-weight: 800;
+    }
+
+    .admin-spotlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .admin-image {
+      flex: 1;
+      min-width: 280px;
+      max-width: 400px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.5s;
+    }
+
+    .admin-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .admin-image:hover {
+      transform: scale(1.05);
+    }
+
+    .admin-text {
+      flex: 2;
+      min-width: 300px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #0d1b2a;
+      z-index: 2;
+    }
+
+    .admin-text h4 {
+      font-size: 1.6rem;
+      color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    /* Canvas covers the spotlight */
+    #tech-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @media (max-width:768px) {
+      .admin-spotlight {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .interactive-section {
+      position: relative;
+      width: 100%;
+      min-height: 500px;
+      overflow: hidden;
+      background: #0d1b2a;
+      color: #fff;
+    }
+
+    #techLines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .interactive-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      padding: 60px;
+    }
+
+    .video-box video {
+      width: 400px;
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .counters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .counter h3 {
+      font-size: 3rem;
+      color: #ff4d6d;
+    }
+
+    .counter p {
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    #spotlight h3 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #0d1b2a;
+      margin-bottom: 40px;
+      font-weight: 800;
+    }
+
+    .spotlight-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 450px;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .tech-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    #tech-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .spotlight-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+    }
+
+    .spotlight-image {
+      flex: 1;
+      max-width: 400px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.5s;
+    }
+
+    .spotlight-image img {
+      width: 100%;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .spotlight-text {
+      flex: 2;
+      min-width: 300px;
+      color: #0d1b2a;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width:768px) {
+      .spotlight-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .spotlight-text {
+        order: 2;
+      }
+
+      .spotlight-image {
+        order: 1;
+      }
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px;
+      position: relative;
+    }
+
+    .testimonial {
+      display: none;
+      max-width: 700px;
+      text-align: center;
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: opacity 0.6s;
+    }
+
+    .testimonial.active {
+      display: block;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .testimonial h5 {
+      color: #ff4d6d;
+    }
+
+    /* Modal Background */
+    .cta-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 5000;
+      padding: 20px;
+    }
+
+    /* Modal Content */
+    .cta-modal-content {
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-modal-content h4 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .cta-modal-content label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .cta-modal-content input,
+    .cta-modal-content textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+
+    .cta-modal-content textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+
+    .btn-cta {
+      background-color: #ff4d6d;
+      color: #fff;
+      border: none;
+      padding: 12px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-cta:hover {
+      background-color: #ff1a3c;
+    }
+
+
+    /* FOOTER */
+    footer {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 40px 60px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* RESPONSIVE ADJUSTMENTS */
+    @media (max-width:980px) {
+      header {
+        padding: 14px 30px;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero h2 {
+        font-size: 2.4rem;
+      }
+
+      .section {
+        padding: 56px 28px;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width:520px) {
+      .hero {
+        padding-top: 96px;
+      }
+
+      .hero h2 {
+        font-size: 1.85rem;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 40px 18px;
+      }
+
+      header h1 {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="CMStudio Logo" style="height:50px;">
+    </a>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile toggle button -->
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+
+  <!-- mobile nav (hidden on desktop) -->
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/27818401398" target="_blank" id="whatsappButton" title="Chat with us">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <h2>We Bring Your Ideas To Life</h2>
+      <p>Creative Media Studios – Where design meets innovation.</p>
+      <a href="services.html" class="btn">Explore Services</a>
+    </div>
+  </section>
+
+
+  <section class="interactive-section">
+    <canvas id="techLines"></canvas>
+    <div class="interactive-content">
+      <div class="video-box">
+        <video src="clip.mp4" autoplay muted loop></video>
+      </div>
+      <div class="counters">
+        <div class="counter">
+          <h3 id="projects">0</h3>
+          <p>Projects Completed</p>
+        </div>
+        <div class="counter">
+          <h3 id="clients">0</h3>
+          <p>Happy Clients</p>
+        </div>
+        <div class="counter">
+          <h3 id="years">0</h3>
+          <p>Years of Experience</p>
+        </div>
+        <div class="counter">
+          <h3 id="awards">0</h3>
+          <p>Awards Won</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN SPOTLIGHT WITH TECH LINES -->
+  <section class="section" id="admin-spotlight">
+    <h3>About CMStudio</h3>
+    <div class="admin-spotlight">
+      <canvas id="tech-canvas"></canvas>
+      <div class="admin-image">
+        <img src="nomsa.png" alt="Admin Support" />
+      </div>
+      <div class="admin-text">
+        <h4>Who We Are</h4>
+        <p>Creative Media Studios is a passionate digital agency transforming ideas into impactful experiences. Our team
+          delivers cutting-edge solutions that drive growth and creativity. Innovation, collaboration, and excellence
+          are at the heart of everything we do.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <h3>What Clients Say</h3>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"CMStudio transformed our online presence. The website is modern and easy to use. Highly recommended!"</p>
+        <h5>- Sarah M.</h5>
+      </div>
+      <div class="testimonial">
+        <p>"Their branding and marketing strategies boosted our sales by 40%. Amazing team!"</p>
+        <h5>- John D.</h5>
+      </div>
+      <div class="testimonial">
+        <p>"Professional, creative, and always on time. CMStudio delivers excellence every time."</p>
+        <h5>- Amanda K.</h5>
+      </div>
+      <div class="testimonial">
+        <p>"Working with CMStudio was a game changer. Our social media engagement skyrocketed!"</p>
+        <h5>- Michael R.</h5>
+      </div>
+      <div class="testimonial">
+        <p>"They perfectly captured our brand identity and turned it into a stunning website."</p>
+        <h5>- Lisa T.</h5>
+      </div>
+      <div class="testimonial">
+        <p>"The creative team at CMStudio really understands what the client wants. Exceptional work!"</p>
+        <h5>- Daniel S.</h5>
+      </div>
+      <div class="testimonial">
+        <p>"From concept to delivery, CMStudio exceeded our expectations. Highly recommend their services!"</p>
+        <h5>- Natasha P.</h5>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="cta-container">
+      <h3>Ready to Start Your Project?</h3>
+      <p>Let’s create something amazing together. Talk to our team today!</p>
+      <button id="openCtaModal" class="btn-cta">Get in Touch</button>
+    </div>
+  </section>
+
+  <!-- WhatsApp Modal -->
+  <div id="ctaModal" class="cta-modal">
+    <div class="cta-modal-content">
+      <span class="close-modal" id="closeCtaModal">&times;</span>
+      <h4>Contact Us via WhatsApp</h4>
+      <form id="whatsappForm">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+        <label for="phone">WhatsApp Number</label>
+        <input type="tel" id="phone" name="phone" required placeholder="+27 123 456 7890">
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Type your message"></textarea>
+
+        <button type="submit" class="btn-cta">Send via WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+    <p>📍 South Africa, Mpumalanga, Mbombela | 📧 info@cmstudio.com</p>
+  </footer>
+
+  <script>
+
+    const whatsappButton = document.getElementById("whatsappButton");
+
+    // Optional: Show after scrolling 100px
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        whatsappButton.style.opacity = 1;
+        whatsappButton.style.transform = 'translateY(0)';
+      } else {
+        whatsappButton.style.opacity = 0;
+        whatsappButton.style.transform = 'translateY(50px)';
+      }
+    });
+
+    // Initial state
+    whatsappButton.style.opacity = 0;
+    whatsappButton.style.transform = 'translateY(50px)';
+    whatsappButton.style.transition = 'all 0.5s ease';
+
+
+    // Get the button
+    const backToTopButton = document.getElementById("backToTop");
+
+    // Show button when scrolling down 200px
+    window.onscroll = function () {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    };
+
+    // Smooth scroll to top
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // simple DOM helpers
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from((ctx || document).querySelectorAll(sel));
+
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    navToggle.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+      // lock scroll when open
+      document.body.style.overflow = open ? 'hidden' : '';
+      // change icon
+      navToggle.innerHTML = open ? '<i class=\"fas fa-xmark\"></i>' : '<i class=\"fas fa-bars\"></i>';
+    });
+
+    // close mobile nav when clicking a link
+    $$('#mobile-nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        navToggle.innerHTML = '<i class=\"fas fa-bars\"></i>';
+      });
+    });
+
+    // Smooth scroll for in-page anchors
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (href === '#' || href === '') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const topOffset = 72; // header height
+        const rect = target.getBoundingClientRect();
+        const offsetTop = window.pageYOffset + rect.top - topOffset;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    });
+
+    // Animated Counters
+    function animateCounter(id, end, duration) {
+      let obj = document.getElementById(id);
+      let start = 0;
+      let stepTime = Math.abs(Math.floor(duration / end));
+      let timer = setInterval(() => {
+        start += 1;
+        obj.textContent = start;
+        if (start >= end) clearInterval(timer);
+      }, stepTime);
+    }
+
+    animateCounter('projects', 120, 2000);
+    animateCounter('clients', 75, 2000);
+    animateCounter('years', 8, 2000);
+    animateCounter('awards', 2, 2000);
+
+    
+    // Service "Learn more" toggles
+    $$('.service-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.service-card');
+        const expanded = card.classList.toggle('expanded');
+        e.target.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        // optional: scroll card into view on mobile when expanded
+        if (expanded && window.innerWidth < 640) {
+          setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+        }
+      });
+    });
+
+    const testimonials = document.querySelectorAll('.testimonial');
+
+    function getWeekNumber(d) {
+      d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      const dayNum = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    function showWeeklyTestimonial() {
+      const week = getWeekNumber(new Date());
+      const index = week % testimonials.length;
+      testimonials.forEach((t, i) => t.classList.remove('active'));
+      testimonials[index].classList.add('active');
+    }
+
+    showWeeklyTestimonial();
+
+    // close mobile nav if viewport changes to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980 && mobileNav.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+
+    // optional: add small touch for portfolio items (tap shows overlay on touch devices)
+    $$('.portfolio-item').forEach(item => {
+      item.addEventListener('touchstart', () => {
+        $$('.portfolio-item .overlay').forEach(o => o.style.opacity = 0);
+        const overlay = item.querySelector('.overlay');
+        if (overlay) overlay.style.opacity = 1;
+        setTimeout(() => { if (overlay) overlay.style.opacity = ''; }, 1200);
+      });
+    });
+
+    // Modal Open & Close
+    const openModal = document.getElementById('openCtaModal');
+    const modal = document.getElementById('ctaModal');
+    const closeModal = document.getElementById('closeCtaModal');
+
+    openModal.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // WhatsApp Form Submit
+    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (name && phone && message) {
+        const waNumber = '27818401398'; // My WhatsApp number
+        const waLink = `https://wa.me/${waNumber}?text=Hi%2C%20my%20name%20is%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
+        window.open(waLink, '_blank');
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        this.reset();
+      }
+
+    });
+
+  </script>
+</body>
+
+</html>

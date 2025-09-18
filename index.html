@@ -543,6 +543,74 @@
       background-color: #ff1a3c;
     }
 
+    #trusted {
+      background: #f9fafc;
+      padding: 60px 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #trusted h3 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: #0d1b2a;
+    }
+
+    .trusted-logos {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      width: max-content;
+      animation: scrollLeft 30s linear infinite;
+    }
+
+    .trusted-logos img {
+      max-height: 60px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .trusted-logos img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    @keyframes scrollLeft {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .trusted-logos {
+        gap: 30px;
+      }
+
+      #trusted h3 {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .trusted-logos {
+        gap: 20px;
+      }
+
+      #trusted h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+    }
+
+
 
     /* FOOTER */
     footer {
@@ -778,6 +846,31 @@
     </div>
   </div>
 
+  <!-- TRUSTED BY -->
+  <section class="section" id="trusted">
+    <h3>Trusted By</h3>
+    <div class="trusted-logos">
+      <img src="edwaleni.png" alt="Client 1">
+      <img src="major.jpg" alt="Client 2">
+      <img src="mkson.png" alt="Client 3">
+      <img src="eugene.png" alt="Client 4">
+      <img src="epign.png" alt="Client 5">
+      <img src="gogm.png" alt="Client 6">
+      <img src="gagm.png" alt="Client 7">
+      <img src="noko.png" alt="Client 8">
+      <img src="sfiso.png" alt="Client 9">
+      <img src="n_logo.png" alt="Client 10">
+      <img src="gat.png" alt="Client 11">
+      <img src="cmstudiol.png" alt="Client 12">
+      <img src="buildingh.png" alt="Client 13">
+      <img src="bbm.png" alt="Client 14">
+      <img src="bethel.png" alt="Client 15">
+      <img src="cmsn.png" alt="Client 16">
+      <img src="eagles.png" alt="Client 17">
+      <img src="kgs.png" alt="Client 18">
+    </div>
+  </section>
+
 
   <!-- FOOTER -->
   <footer id="contact">
@@ -884,7 +977,7 @@
     animateCounter('years', 8, 2000);
     animateCounter('awards', 2, 2000);
 
-    
+
     // Service "Learn more" toggles
     $$('.service-toggle').forEach(btn => {
       btn.addEventListener('click', (e) => {

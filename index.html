@@ -221,6 +221,26 @@
       margin-bottom: 30px;
     }
 
+    #welcome-text {
+  font-size: 2.5rem;
+  color: #ff4d6d;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+#welcome-text::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+
     .cursor-circle {
       position: absolute;
       top: 0;
@@ -432,6 +452,16 @@
       color: #ff4d6d;
       margin-bottom: 15px;
     }
+
+    #admin-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* behind content */
+  pointer-events: none;
+}
 
     /* Canvas covers the spotlight */
     #tech-canvas {
@@ -1081,23 +1111,23 @@
   <button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
 
-  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-content">
-      <h2>We Bring Your Ideas To Life</h2>
-      <p>Creative Media Studios – Where design meets innovation.</p>
-      <a href="services.html" class="btn">Explore Services</a>
-    </div>
+  <div class="hero-content">
+    <h2 id="welcome-text"></h2>
+    <p>Creative Media Studios – Where design meets innovation.</p>
+    <a href="services.html" class="btn">Explore Services</a>
+  </div>
 
-    <!-- Dark overlay for readability -->
-    <div class="hero-dark-overlay"></div>
+  <!-- Dark overlay for readability -->
+  <div class="hero-dark-overlay"></div>
 
-    <!-- Background image overlay -->
-    <div class="hero-overlay"></div>
+  <!-- Background image overlay -->
+  <div class="hero-overlay"></div>
 
-    <!-- Cursor circle -->
-    <div class="cursor-circle">Drag to move</div>
-  </section>
+  <!-- Cursor circle -->
+  <div class="cursor-circle">Drag to move</div>
+</section>
+
 
 
 
@@ -1130,6 +1160,7 @@
 
   <!-- ADMIN SPOTLIGHT WITH TECH LINES -->
   <section class="section" id="admin-spotlight">
+    <canvas id="tech-canvas"></canvas>
     <h3>About CMStudio</h3>
     <div class="admin-spotlight">
       <canvas id="tech-canvas"></canvas>
@@ -1244,6 +1275,56 @@
 
   <script>
 
+    const messages = [
+  "Welcome to Creative Media Studios",
+  "We Bring Your Ideas To Life",
+  "Where Design Meets Innovation",
+  "Crafting Digital Experiences That Inspire",
+  "Turning Your Vision Into Reality"
+];
+
+const welcomeElement = document.getElementById('welcome-text');
+let msgIndex = 0;
+let charIndex = 0;
+let typingSpeed = 100;
+let deletingSpeed = 50;
+let pauseTime = 1500;
+
+function typeLoop() {
+  const currentMessage = messages[msgIndex];
+
+  if (charIndex < currentMessage.length) {
+    // Type
+    welcomeElement.textContent = currentMessage.substring(0, charIndex + 1);
+    charIndex++;
+    setTimeout(typeLoop, typingSpeed);
+  } else {
+    // Pause before deleting
+    setTimeout(() => {
+      deleteLoop();
+    }, pauseTime);
+  }
+}
+
+function deleteLoop() {
+  const currentMessage = messages[msgIndex];
+
+  if (charIndex > 0) {
+    // Delete
+    welcomeElement.textContent = currentMessage.substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(deleteLoop, deletingSpeed);
+  } else {
+    // Next message
+    msgIndex = (msgIndex + 1) % messages.length;
+    setTimeout(typeLoop, typingSpeed);
+  }
+}
+
+// Start on page load
+window.addEventListener('load', typeLoop);
+
+
     // Initial state
     whatsappButton.style.opacity = 0;
     whatsappButton.style.transform = 'translateY(50px)';
@@ -1295,62 +1376,7 @@
       }
     });
 
-    const canvas = document.getElementById('techLines');
-    const ctx = canvas.getContext('2d');
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = document.querySelector('.interactive-section').offsetHeight;
-
-    const lines = [];
-    const numLines = 30;
-
-    // Create random starting points
-    for (let i = 0; i < numLines; i++) {
-      lines.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        dx: (Math.random() - 0.5) * 2,
-        dy: (Math.random() - 0.5) * 2
-      });
-    }
-
-    let mouse = { x: width / 2, y: height / 2 };
-
-    // Update mouse position
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    // Animate lines
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      lines.forEach(line => {
-        // Move line slightly toward the mouse
-        line.x += (mouse.x - line.x) * 0.01 + line.dx * 0.5;
-        line.y += (mouse.y - line.y) * 0.01 + line.dy * 0.5;
-
-        // Draw line
-        ctx.beginPath();
-        ctx.moveTo(line.x, line.y);
-        ctx.lineTo(line.x + line.dx * 20, line.y + line.dy * 20);
-        ctx.strokeStyle = 'rgba(255, 77, 109, 0.7)';
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Handle resizing
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = document.querySelector('.interactive-section').offsetHeight;
-    });
-
+    
 
     document.querySelectorAll('nav ul li a').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -1384,6 +1410,101 @@
       });
     });
 
+    const canvas = document.getElementById('techLines');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = document.querySelector('.interactive-section').offsetHeight;
+
+    const numPoints = 50;
+    const points = [];
+    const maxConnection = 120; // max distance to draw lines
+    const cursor = { x: -1000, y: -1000, radius: 150 };
+
+    // Track cursor
+    window.addEventListener('mousemove', e => {
+      cursor.x = e.clientX;
+      cursor.y = e.clientY;
+    });
+
+    // Initialize points
+    for (let i = 0; i < numPoints; i++) {
+      points.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2
+      });
+    }
+
+    // Animate network
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Move points
+      for (let p of points) {
+        p.x += p.dx;
+        p.y += p.dy;
+
+        // Bounce off edges
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
+
+        // Avoid cursor
+        const distX = p.x - cursor.x;
+        const distY = p.y - cursor.y;
+        const dist = Math.sqrt(distX * distX + distY * distY);
+        if (dist < cursor.radius) {
+          const angle = Math.atan2(distY, distX);
+          const force = (cursor.radius - dist) * 0.2;
+          p.x += Math.cos(angle) * force;
+          p.y += Math.sin(angle) * force;
+        }
+
+        // Draw point
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,77,109,0.9)';
+        ctx.fill();
+      }
+
+      // Draw lines between close points
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const dx = points[i].x - points[j].x;
+          const dy = points[i].y - points[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < maxConnection) {
+            ctx.beginPath();
+            ctx.moveTo(points[i].x, points[i].y);
+            ctx.lineTo(points[j].x, points[j].y);
+            ctx.strokeStyle = `rgba(255,77,109,${1 - distance / maxConnection})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = document.querySelector('.interactive-section').offsetHeight;
+      points.length = 0;
+      for (let i = 0; i < numPoints; i++) {
+        points.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          dx: (Math.random() - 0.5) * 1.2,
+          dy: (Math.random() - 0.5) * 1.2
+        });
+      }
+    });
 
 
     // Smooth scroll to top
@@ -1447,8 +1568,8 @@
       }, stepTime);
     }
 
-    animateCounter('projects', 120, 2000);
-    animateCounter('clients', 75, 2000);
+    animateCounter('projects', 2120, 2000);
+    animateCounter('clients', 1775, 2000);
     animateCounter('years', 8, 2000);
     animateCounter('awards', 2, 2000);
 
@@ -1613,7 +1734,7 @@
     hero.addEventListener('touchend', endDrag);
     hero.addEventListener('touchcancel', () => { hero.style.opacity = 1; isDragging = false; });
 
-
+    
 
   </script>
 </body>

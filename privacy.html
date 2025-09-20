@@ -2,316 +2,260 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Media Studios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CMStudio - Creative Media Solutions</title>
-    <meta name="description"
-        content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
-    <meta name="keywords" content="CMStudio, creative media, web design, branding, digital solutions, South Africa">
-    <meta name="author" content="CMStudio">
-    <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMStudio - Privacy Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* RESET */
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Poppins',sans-serif;background:#0d1b2a;color:#fff;overflow-x:hidden;}
 
-    <!-- Favicon -->
-    <link rel="icon" href="google.png" type="image/png">
+/* HEADER */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#0d1b2a;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+header .logo img {height:50px;}
+nav ul {display:flex;gap:25px;list-style:none;}
+nav a {color:#fff;text-decoration:none;font-weight:600;transition:color 0.3s;}
+nav a:hover {color:#ff4d6d;}
 
-    <!-- Open Graph for social media -->
-    <meta property="og:title" content="CMStudio - Creative Media Solutions">
-    <meta property="og:description"
-        content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
-    <meta property="og:image" content="google.png">
-    <meta property="og:url" content="https://www.cmstudio.online">
-    <meta property="og:type" content="website">
+/* Hamburger */
+.nav-toggle {display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;z-index:30;}
+.nav-toggle span {display:block;height:3px;width:100%;background:#ff4d6d;border-radius:2px;transition:all 0.4s;}
+.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.nav-toggle.active span:nth-child(2){opacity:0;}
+.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CMStudio - Creative Media Solutions">
-    <meta name="twitter:description"
-        content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
-    <meta name="twitter:image" content="google.png">
-    <!-- Google structured data (JSON-LD) -->
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "CMStudio",
-    "url": "https://www.cmstudio.online",
-    "logo": "https://www.cmstudio.online/google.png",
-    "sameAs": [
-      "https://www.facebook.com/CMStudio Media",
-      "https://www.instagram.com/@n.t.a.n.d.o0",
-      "https://www.linkedin.com/company/CMStudio"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+27 81 840 1398",
-      "contactType": "customer service"
-    }
-  }
-  </script>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #0d1b2a;
-            color: #fff;
-        }
+/* Mobile nav */
+.mobile-nav {
+  display:flex;
+  flex-direction:column;
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:70%;
+  height:100%;
+  background:#111c2c;
+  padding:100px 20px;
+  gap:30px;
+  transition:right 0.4s ease;
+  z-index:25;
+}
+.mobile-nav ul {list-style:none;display:flex;flex-direction:column;gap:25px;}
+.mobile-nav ul li a {color:#ff4d6d;text-decoration:none;font-size:1.2rem;font-weight:600;}
+.mobile-nav.show {right:0;}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: #0d1b2a;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+/* Overlay */
+.overlay {
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:15;
+  cursor:pointer;
+}
+.overlay.show {display:block;}
 
-        header nav ul {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+/* MEDIA QUERY */
+@media(max-width:992px){
+  nav {display:none;}
+  .nav-toggle {display:flex;}
+}
 
-        header nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
+/* MAIN CONTENT */
+main {
+  max-width:1000px;
+  margin:40px auto;
+  padding:20px;
+  position:relative;
+  z-index:1;
+}
+main h1 {text-align:center;font-size:2.8rem;margin-bottom:40px;color:#ff4d6d;}
+.clause {
+  background:rgba(255,77,109,0.08);
+  border-left:4px solid #ff4d6d;
+  padding:20px 25px;
+  margin-bottom:25px;
+  border-radius:8px;
+}
+.clause h2 {color:#ff4d6d;margin-bottom:10px;}
+.clause p {line-height:1.6;}
 
-        header nav a:hover {
-            color: #ff1a57;
-        }
+/* FOOTER */
+footer {
+  background:#0d1b2a;
+  color:#fff;
+  padding:60px 20px;
+  text-align:center;
+}
+footer a {color:#ff4d6d;text-decoration:none;}
+footer a:hover {color:#ff1a57;}
+.footer-social a {margin:0 10px;font-size:1.3rem;color:#ff4d6d;transition:transform 0.3s,color 0.3s;}
+.footer-social a:hover {transform:scale(1.2);color:#ff1a57;}
 
-        header .logo img {
-            height: 50px;
-        }
-
-        main {
-            position: relative;
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 40px 20px;
-            z-index: 1;
-        }
-
-        main h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 40px;
-            color: #ff4d6d;
-        }
-
-        .clause {
-            background: rgba(255, 77, 109, 0.1);
-            border-left: 4px solid #ff4d6d;
-            padding: 20px 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .clause:hover {
-            transform: translateY(-3px);
-        }
-
-        .clause h2 {
-            margin-top: 0;
-            color: #ff4d6d;
-        }
-
-        .clause p {
-            line-height: 1.6;
-        }
-
-        footer {
-            background: #0d1b2a;
-            color: #fff;
-            padding: 80px 20px;
-            text-align: center;
-            font-size: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .footer-info a,
-        .footer-links a {
-            color: #ff4d6d;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-info a:hover,
-        .footer-links a:hover {
-            color: #ff1a57;
-        }
-
-        .footer-links {
-            margin: 10px 0;
-        }
-
-        .footer-social a {
-            margin: 0 15px;
-            font-size: 1.5rem;
-            color: #ff4d6d;
-            transition: transform 0.3s, color 0.3s;
-        }
-
-        .footer-social a:hover {
-            transform: scale(1.2);
-            color: #ff1a57;
-        }
-
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-    </style>
+/* BACKGROUND CANVAS */
+#bg-canvas {
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+</style>
 </head>
 
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+<!-- Background Canvas -->
+<canvas id="bg-canvas"></canvas>
 
-    <!-- HEADER -->
-    <header>
-        <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-toggle" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
 
-    <!-- MAIN PRIVACY -->
-    <main>
-        <h1>Privacy Policy</h1>
+<!-- Overlay -->
+<div class="overlay"></div>
 
-        <div class="clause">
-            <h2>1. Information We Collect</h2>
-            <p>We may collect personal information you provide when contacting us or using our services, including your
-                name, email, and message.</p>
-        </div>
+<!-- Mobile nav -->
+<div class="mobile-nav">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
 
-        <div class="clause">
-            <h2>2. Use of Information</h2>
-            <p>Your information is used solely to respond to inquiries, provide services, and improve our website.</p>
-        </div>
+<!-- MAIN CONTENT -->
+<main>
+  <h1>Privacy Policy</h1>
 
-        <div class="clause">
-            <h2>3. Sharing of Information</h2>
-            <p>We do not sell, trade, or rent your personal information to third parties.</p>
-        </div>
+  <div class="clause">
+    <h2>1. Information We Collect</h2>
+    <p>We may collect personal information you provide when contacting us or using our services, including your name, email, and message.</p>
+  </div>
 
-        <div class="clause">
-            <h2>4. Security</h2>
-            <p>We implement appropriate measures to protect your data but cannot guarantee absolute security over the
-                internet.</p>
-        </div>
+  <div class="clause">
+    <h2>2. Use of Information</h2>
+    <p>Your information is used solely to respond to inquiries, provide services, and improve our website.</p>
+  </div>
 
-        <div class="clause">
-            <h2>5. Updates to Policy</h2>
-            <p>We may update this privacy policy periodically. Continued use of our site constitutes acceptance of the
-                updated policy.</p>
-        </div>
-    </main>
+  <div class="clause">
+    <h2>3. Sharing of Information</h2>
+    <p>We do not sell, trade, or rent your personal information to third parties.</p>
+  </div>
 
-    <!-- FOOTER -->
-    <footer id="contact">
-        <div class="footer-container">
-            <!-- Company Info -->
-            <div class="footer-info">
-                <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-                <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
-            </div>
+  <div class="clause">
+    <h2>4. Security</h2>
+    <p>We implement appropriate measures to protect your data but cannot guarantee absolute security over the internet.</p>
+  </div>
 
-            <!-- Footer Links -->
-            <div class="footer-links">
-                <a href="terms.html">Terms & Conditions</a> |
-                <a href="privacy.html">Privacy Policy</a>
-            </div>
+  <div class="clause">
+    <h2>5. Updates to Policy</h2>
+    <p>We may update this privacy policy periodically. Continued use of our site constitutes acceptance of the updated policy.</p>
+  </div>
+</main>
 
-            <!-- Social Media -->
-            <div class="footer-social">
-                <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" aria-label="Facebook"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/@n.t.a.n.d.o.e" aria-label="Instagram"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://wa.me/27818401398" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </footer>
-    <!-- JS for subtle moving circles -->
-    <script>
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
+<!-- FOOTER -->
+<footer>
+  <div class="footer-info">
+    <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+    <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+  </div>
+  <div class="footer-links">
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+  <div class="footer-social">
+    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+<script>
+  // Hamburger toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const overlay = document.querySelector('.overlay');
 
-        const circles = [];
-        const numCircles = 12; // calm background
+  function toggleMenu() {
+    navToggle.classList.toggle('active');
+    mobileNav.classList.toggle('show');
+    overlay.classList.toggle('show');
+  }
 
-        for (let i = 0; i < numCircles; i++) {
-            circles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: 10 + Math.random() * 15,
-                dx: (Math.random() - 0.5) * 0.2,
-                dy: (Math.random() - 0.5) * 0.2,
-                color: Math.random() < 0.5 ? 'rgba(255,77,109,0.3)' : 'rgba(255,77,109,0.15)'
-            });
-        }
+  navToggle.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', toggleMenu);
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let c of circles) {
-                c.x += c.dx;
-                c.y += c.dy;
-                if (c.x - c.radius < 0 || c.x + c.radius > canvas.width) c.dx *= -1;
-                if (c.y - c.radius < 0 || c.y + c.radius > canvas.height) c.dy *= -1;
-                ctx.beginPath();
-                ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
-                ctx.fillStyle = c.color;
-                ctx.fill();
-            }
-            requestAnimationFrame(animate);
-        }
+  // Background circles
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
 
-        animate();
-    </script>
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const circles = [];
+  const numCircles = 10;
+  for (let i = 0; i < numCircles; i++) {
+    circles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: 10 + Math.random() * 12,
+      dx: (Math.random() - 0.5) * 0.2,
+      dy: (Math.random() - 0.5) * 0.2,
+      color: Math.random() < 0.5 ? 'rgba(255,77,109,0.25)' : 'rgba(255,77,109,0.15)'
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let c of circles) {
+      c.x += c.dx;
+      c.y += c.dy;
+      if (c.x - c.radius < 0 || c.x + c.radius > canvas.width) c.dx *= -1;
+      if (c.y - c.radius < 0 || c.y + c.radius > canvas.height) c.dy *= -1;
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
+      ctx.fillStyle = c.color;
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
 
 </body>
-
 </html>

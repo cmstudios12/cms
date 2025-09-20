@@ -1,260 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms & Conditions – CMStudio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0d1b2a;
-      color: #fff;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Media Studios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMStudio - Creative Media Solutions</title>
+    <meta name="description"
+        content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
+    <meta name="keywords" content="CMStudio, creative media, web design, branding, digital solutions, South Africa">
+    <meta name="author" content="CMStudio">
+    <meta name="robots" content="index, follow">
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: #0d1b2a;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+    <!-- Favicon -->
+    <link rel="icon" href="google.png" type="image/png">
 
-    header nav ul {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- Open Graph for social media -->
+    <meta property="og:title" content="CMStudio - Creative Media Solutions">
+    <meta property="og:description"
+        content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
+    <meta property="og:image" content="google.png">
+    <meta property="og:url" content="https://www.cmstudio.online">
+    <meta property="og:type" content="website">
 
-    header nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CMStudio - Creative Media Solutions">
+    <meta name="twitter:description"
+        content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
+    <meta name="twitter:image" content="google.png">
+    <!-- Google structured data (JSON-LD) -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CMStudio",
+    "url": "https://www.cmstudio.online",
+    "logo": "https://www.cmstudio.online/google.png",
+    "sameAs": [
+      "https://www.facebook.com/CMStudio Media",
+      "https://www.instagram.com/@n.t.a.n.d.o0",
+      "https://www.linkedin.com/company/CMStudio"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+27 81 840 1398",
+      "contactType": "customer service"
     }
+  }
+  </script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0d1b2a;
+            color: #fff;
+        }
 
-    header nav a:hover {
-      color: #ff1a57;
-    }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #0d1b2a;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
-    header .logo img {
-      height: 50px;
-    }
+        header nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
-    main {
-      position: relative;
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 40px 20px;
-      z-index: 1;
-    }
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
 
-    main h1 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 40px;
-      color: #ff4d6d;
-    }
+        header nav a:hover {
+            color: #ff1a57;
+        }
 
-    .clause {
-      background: rgba(255,77,109,0.1);
-      border-left: 4px solid #ff4d6d;
-      padding: 20px 25px;
-      margin-bottom: 25px;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
+        header .logo img {
+            height: 50px;
+        }
 
-    .clause:hover {
-      transform: translateY(-3px);
-    }
+        main {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            z-index: 1;
+        }
 
-    .clause h2 {
-      margin-top: 0;
-      color: #ff4d6d;
-    }
+        main h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #ff4d6d;
+        }
 
-    .clause p {
-      line-height: 1.6;
-    }
+        .clause {
+            background: rgba(255, 77, 109, 0.1);
+            border-left: 4px solid #ff4d6d;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
 
-    footer {
-      background: #0d1b2a;
-      color: #fff;
-      padding: 80px 20px;
-      text-align: center;
-      font-size: 1rem;
-      position: relative;
-      z-index: 1;
-    }
+        .clause:hover {
+            transform: translateY(-3px);
+        }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      align-items: center;
-    }
+        .clause h2 {
+            margin-top: 0;
+            color: #ff4d6d;
+        }
 
-    .footer-info a,
-    .footer-links a {
-      color: #ff4d6d;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+        .clause p {
+            line-height: 1.6;
+        }
 
-    .footer-info a:hover,
-    .footer-links a:hover {
-      color: #ff1a57;
-    }
+        footer {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
 
-    .footer-links {
-      margin: 10px 0;
-    }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
 
-    .footer-social a {
-      margin: 0 15px;
-      font-size: 1.5rem;
-      color: #ff4d6d;
-      transition: transform 0.3s, color 0.3s;
-    }
+        .footer-info a,
+        .footer-links a {
+            color: #ff4d6d;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-    .footer-social a:hover {
-      transform: scale(1.2);
-      color: #ff1a57;
-    }
+        .footer-info a:hover,
+        .footer-links a:hover {
+            color: #ff1a57;
+        }
 
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-  </style>
+        .footer-links {
+            margin: 10px 0;
+        }
+
+        .footer-social a {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: #ff4d6d;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2);
+            color: #ff1a57;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
 </head>
+
 <body>
 
-  <canvas id="bg-canvas"></canvas>
+    <canvas id="bg-canvas"></canvas>
 
-  <!-- HEADER -->
-  <header>
-    <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- MAIN TERMS -->
-  <main>
-    <h1>Terms & Conditions</h1>
+    <!-- MAIN TERMS -->
+    <main>
+        <h1>Terms & Conditions</h1>
 
-    <div class="clause">
-      <h2>1. Use of Website</h2>
-      <p>You may use our website for lawful purposes only. Unauthorized copying or misuse is prohibited.</p>
-    </div>
+        <div class="clause">
+            <h2>1. Use of Website</h2>
+            <p>You may use our website for lawful purposes only. Unauthorized copying or misuse is prohibited.</p>
+        </div>
 
-    <div class="clause">
-      <h2>2. Intellectual Property</h2>
-      <p>All content, logos, and materials on this site are the property of Creative Media Studios.</p>
-    </div>
+        <div class="clause">
+            <h2>2. Intellectual Property</h2>
+            <p>All content, logos, and materials on this site are the property of Creative Media Studios.</p>
+        </div>
 
-    <div class="clause">
-      <h2>3. Services</h2>
-      <p>Our services are provided as described. We do not guarantee that all information is complete or error-free.</p>
-    </div>
+        <div class="clause">
+            <h2>3. Services</h2>
+            <p>Our services are provided as described. We do not guarantee that all information is complete or
+                error-free.</p>
+        </div>
 
-    <div class="clause">
-      <h2>4. Limitation of Liability</h2>
-      <p>Creative Media Studios is not liable for any direct or indirect damages resulting from the use of our website or services.</p>
-    </div>
+        <div class="clause">
+            <h2>4. Limitation of Liability</h2>
+            <p>Creative Media Studios is not liable for any direct or indirect damages resulting from the use of our
+                website or services.</p>
+        </div>
 
-    <div class="clause">
-      <h2>5. Changes to Terms</h2>
-      <p>We may update these terms at any time. Continued use of the website constitutes acceptance of the updated terms.</p>
-    </div>
-  </main>
+        <div class="clause">
+            <h2>5. Changes to Terms</h2>
+            <p>We may update these terms at any time. Continued use of the website constitutes acceptance of the updated
+                terms.</p>
+        </div>
+    </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-info">
-        <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-        <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
-      </div>
-      <div class="footer-links">
-        <a href="terms.html">Terms & Conditions</a> |
-        <a href="privacy.html">Privacy Policy</a>
-      </div>
-      <div class="footer-social">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-  </footer>
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-info">
+                <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+                <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+            </div>
 
-  <!-- JS for moving background circles -->
-  <script>
-    const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <a href="terms.html">Terms & Conditions</a> |
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+            <!-- Social Media -->
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/@n.t.a.n.d.o.e" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/27818401398" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
 
-const circles = [];
-const numCircles = 12; // fewer circles
+    <!-- JS for moving background circles -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
 
-for (let i = 0; i < numCircles; i++) {
-  circles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: 10 + Math.random() * 15, // smaller size
-    dx: (Math.random() - 0.5) * 0.2, // slower
-    dy: (Math.random() - 0.5) * 0.2,
-    color: Math.random() < 0.5 ? 'rgba(255,77,109,0.3)' : 'rgba(255,77,109,0.15)' // softer colors
-  });
-}
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for (let c of circles) {
-    c.x += c.dx;
-    c.y += c.dy;
-    if (c.x-c.radius<0 || c.x+c.radius>canvas.width) c.dx*=-1;
-    if (c.y-c.radius<0 || c.y+c.radius>canvas.height) c.dy*=-1;
-    ctx.beginPath();
-    ctx.arc(c.x,c.y,c.radius,0,Math.PI*2);
-    ctx.fillStyle = c.color;
-    ctx.fill();
-  }
-  requestAnimationFrame(animate);
-}
+        const circles = [];
+        const numCircles = 12; // fewer circles
 
-animate();
+        for (let i = 0; i < numCircles; i++) {
+            circles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: 10 + Math.random() * 15, // smaller size
+                dx: (Math.random() - 0.5) * 0.2, // slower
+                dy: (Math.random() - 0.5) * 0.2,
+                color: Math.random() < 0.5 ? 'rgba(255,77,109,0.3)' : 'rgba(255,77,109,0.15)' // softer colors
+            });
+        }
 
-  </script>
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let c of circles) {
+                c.x += c.dx;
+                c.y += c.dy;
+                if (c.x - c.radius < 0 || c.x + c.radius > canvas.width) c.dx *= -1;
+                if (c.y - c.radius < 0 || c.y + c.radius > canvas.height) c.dy *= -1;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
+                ctx.fillStyle = c.color;
+                ctx.fill();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+    </script>
 
 </body>
+
 </html>

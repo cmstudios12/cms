@@ -304,12 +304,48 @@
         footer {
             background: #0d1b2a;
             color: #fff;
-            padding: 40px 60px;
+            padding: 80px 20px;
             text-align: center;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
-        footer p {
-            margin: 5px 0;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .footer-info a,
+        .footer-links a {
+            color: #ff4d6d;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-info a:hover,
+        .footer-links a:hover {
+            color: #ff1a57;
+        }
+
+        .footer-links {
+            margin: 10px 0;
+        }
+
+        .footer-social a {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: #ff4d6d;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2);
+            color: #ff1a57;
         }
 
         @media (max-width:980px) {
@@ -489,9 +525,31 @@
     </section>
 
 
-    <footer>
-        <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-        <p>📍 South Africa, Mpumalanga, Mbombela | 📧 info@cmstudio.com</p>
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-info">
+                <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+                <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <a href="terms.html">Terms & Conditions</a> |
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <!-- Social Media -->
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/@n.t.a.n.d.o.e" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/27818401398" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
     </footer>
 
     <script>

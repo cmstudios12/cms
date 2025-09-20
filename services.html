@@ -2,418 +2,460 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Services - CMStudio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services - CMStudio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    body {
-      background: #f5f6fa;
-      color: #333;
-    }
+        body {
+            background: #f5f6fa;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #0d1b2a;
-      color: #fff;
-      padding: 15px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0d1b2a;
+            color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-    header img {
-      height: 50px;
-    }
+        header h1 {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #fff;
+        }
 
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
 
-    nav ul li a {
-      color: #fff;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
 
-    nav ul li a:hover {
-      color: #ff4d6d;
-    }
+        nav ul li a:hover {
+            color: #ff4d6d;
+        }
 
-    .nav-toggle {
-      display: none;
-      background: transparent;
-      border: 0;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
 
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 72px;
-      left: 14px;
-      right: 14px;
-      background: #0d1b2a;
-      padding: 18px;
-      border-radius: 12px;
-      z-index: 1050;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
-    }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 14px;
+            right: 14px;
+            background: #0d1b2a;
+            padding: 18px;
+            border-radius: 12px;
+            z-index: 1050;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+        }
 
-    .mobile-nav.open {
-      display: block;
-    }
+        .mobile-nav.open {
+            display: block;
+        }
 
-    .mobile-nav ul {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    .mobile-nav a {
-      color: #fff;
-      font-weight: 700;
-      padding: 8px 6px;
-      display: block;
-    }
+        .mobile-nav a {
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 6px;
+            display: block;
+        }
 
-    .hero {
-      height: 40vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(rgba(13, 27, 42, 0.6), rgba(13, 27, 42, 0.6)),
-        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center/cover;
-      color: #fff;
-      text-align: center;
-      padding-top: 80px;
-      animation: fadeIn 1.2s ease forwards;
-    }
+        .hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)),
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center/cover;
+            color: #fff;
+            text-align: center;
+            padding-top: 84px;
+        }
 
-    .hero h2 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
 
-    .hero p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
+        .hero p {
+            font-size: 1.2rem;
+        }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
+        .section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .section h3 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            font-weight: 800;
+            color: #0d1b2a;
+        }
 
-    .section {
-      padding: 100px 60px;
-      max-width: 1200px;
-      margin: auto;
-    }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
 
-    .section h3 {
-      text-align: center;
-      font-size: 2.4rem;
-      margin-bottom: 60px;
-      font-weight: 800;
-      color: #0d1b2a;
-      position: relative;
-    }
+        .service-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
 
-    .section h3::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: #ff4d6d;
-      margin: 15px auto 0 auto;
-      border-radius: 2px;
-    }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
+        .service-card i {
+            font-size: 2.2rem;
+            color: #ff4d6d;
+        }
 
-    .service-card {
-      background: #fff;
-      padding: 30px 20px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      cursor: pointer;
-      transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
+        .service-card h4 {
+            margin-top: 8px;
+            color: #0d1b2a;
+        }
 
-    .service-card i {
-      font-size: 2.5rem;
-      color: #ff4d6d;
-      transition: transform 0.4s;
-    }
+        .service-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
 
-    .service-card h4 {
-      color: #0d1b2a;
-      font-weight: 700;
-    }
+        /* Overlay */
+        .service-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+            overflow: auto;
+        }
 
-    .service-card p {
-      color: #555;
-      font-size: 0.95rem;
-    }
+        .service-overlay.active {
+            display: flex;
+        }
 
-    .service-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
-      background: #fffbf9;
-    }
+        .service-overlay-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+        }
 
-    .service-card:hover i {
-      transform: rotate(15deg) scale(1.2);
-    }
+        .service-overlay-content h3 {
+            color: #ff4d6d;
+            margin-bottom: 20px;
+        }
 
-    .request-btn {
-      margin-top: 15px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #25d366;
-      color: #fff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: 0.3s;
-    }
+        .service-overlay-content p {
+            margin-bottom: 15px;
+            color: #333;
+        }
 
-    .request-btn i {
-      font-size: 1.2rem;
-    }
+        .close-overlay {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ff4d6d;
+        }
 
-    .request-btn:hover {
-      background: #1ebe5d;
-    }
+        .whatsapp-btn {
+            background: #25d366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
 
-    footer {
-      background: #0d1b2a;
-      color: #fff;
-      padding: 50px 60px;
-      text-align: center;
-    }
+        .whatsapp-btn i {
+            font-size: 1.2rem;
+        }
 
-    footer p {
-      margin: 5px 0;
-    }
+        footer {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 40px 60px;
+            text-align: center;
+        }
 
-    @media (max-width:980px) {
-      header {
-        padding: 14px 30px;
-      }
+        footer p {
+            margin: 5px 0;
+        }
 
-      .nav-toggle {
-        display: block;
-      }
+        @media (max-width:980px) {
+            header {
+                padding: 14px 30px;
+            }
 
-      nav ul {
-        display: none;
-      }
+            .nav-toggle {
+                display: block;
+            }
 
-      .section {
-        padding: 70px 28px;
-      }
-    }
+            nav ul {
+                display: none;
+            }
 
-    @media (max-width:520px) {
-      .section {
-        padding: 50px 18px;
-      }
+            .section {
+                padding: 56px 28px;
+            }
+        }
 
-      .hero h2 {
-        font-size: 1.9rem;
-      }
+        @media (max-width:520px) {
+            .section {
+                padding: 40px 18px;
+            }
 
-      .service-card {
-        padding: 25px 15px;
-      }
-    }
-  </style>
+            .hero h2 {
+                font-size: 1.85rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header>
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="CMStudio Logo">
-    </a>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
-      <i class="fas fa-bars"></i>
-    </button>
-  </header>
 
-  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="CMStudio Logo" style="height:50px;">
+        </a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
 
-  <section class="hero">
-    <div>
-      <h2>Our Services</h2>
-      <p>Explore our wide range of services designed to elevate your brand.</p>
+    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </div>
-  </section>
 
-  <section class="section">
-    <h3>What We Offer</h3>
-    <div class="services-grid">
-      <!-- Example Service Card -->
-      <div class="service-card">
-        <i class="fas fa-palette"></i>
-        <h4>Graphic Design</h4>
-        <p>Creative visuals that capture attention and elevate your brand.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Graphic%20Design%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
+    <section class="hero">
+        <div>
+            <h2>Our Services</h2>
+            <p>Explore our wide range of services designed to elevate your brand.</p>
+        </div>
+    </section>
 
-      <div class="service-card">
-        <i class="fas fa-laptop-code"></i>
-        <h4>Web Design</h4>
-        <p>Responsive, beautiful websites tailored to your business.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Web%20Design%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
+    <section class="section">
+        <h3>What We Offer</h3>
+        <div class="services-grid">
+            <div class="service-card" data-service="Graphic Design">
+                <i class="fas fa-palette"></i>
+                <h4>Graphic Design</h4>
+                <p>Creative visuals that capture attention and elevate your brand.</p>
+            </div>
+            <div class="service-card" data-service="Web Design">
+                <i class="fas fa-laptop-code"></i>
+                <h4>Web Design</h4>
+                <p>Responsive, beautiful websites tailored to your business.</p>
+            </div>
+            <div class="service-card" data-service="E-commerce">
+                <i class="fas fa-shop"></i>
+                <h4>E-commerce</h4>
+                <p>Online stores optimized for conversions and seamless shopping.</p>
+            </div>
+            <div class="service-card" data-service="Branding">
+                <i class="fas fa-bullhorn"></i>
+                <h4>Branding</h4>
+                <p>Distinctive brand identity that resonates with your audience.</p>
+            </div>
+            <div class="service-card" data-service="Digital Marketing">
+                <i class="fas fa-chart-line"></i>
+                <h4>Digital Marketing</h4>
+                <p>Targeted campaigns that increase your online reach and ROI.</p>
+            </div>
+            <div class="service-card" data-service="Photography">
+                <i class="fas fa-camera-retro"></i>
+                <h4>Photography</h4>
+                <p>Professional images that tell your story and showcase your brand.</p>
+            </div>
+            <div class="service-card" data-service="Videography">
+                <i class="fas fa-video"></i>
+                <h4>Videography</h4>
+                <p>Professional video production for ads, events, and storytelling that captures attention.</p>
+            </div>
+            <div class="service-card" data-service="Social Media">
+                <i class="fas fa-share-alt"></i>
+                <h4>Social Media</h4>
+                <p>Daily content, engagement, and campaigns to grow your channels.</p>
+            </div>
+        </div>
+    </section>
 
-      <div class="service-card">
-        <i class="fas fa-shop"></i>
-        <h4>E-commerce</h4>
-        <p>Online stores optimized for conversions and seamless shopping.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20E-commerce%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
-
-      <div class="service-card">
-        <i class="fas fa-bullhorn"></i>
-        <h4>Branding</h4>
-        <p>Distinctive brand identity that resonates with your audience.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Branding%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
-
-      <div class="service-card">
-        <i class="fas fa-chart-line"></i>
-        <h4>Digital Marketing</h4>
-        <p>Targeted campaigns that increase your online reach and ROI.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Digital%20Marketing%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
-
-      <div class="service-card">
-        <i class="fas fa-camera-retro"></i>
-        <h4>Photography</h4>
-        <p>Professional images that tell your story and showcase your brand.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Photography%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
-
-      <div class="service-card">
-        <i class="fas fa-video"></i>
-        <h4>Videography</h4>
-        <p>Professional video production for ads, events, and storytelling.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Videography%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
-
-      <div class="service-card">
-        <i class="fas fa-share-alt"></i>
-        <h4>Social Media</h4>
-        <p>Daily content, engagement, and campaigns to grow your channels.</p>
-        <a href="https://wa.me/27818401398?text=Hello!%20I%20would%20like%20to%20request%20Social%20Media%20service" target="_blank" class="request-btn">
-          <i class="fab fa-whatsapp"></i> Request
-        </a>
-      </div>
+    <!-- Service Overlay -->
+    <div class="service-overlay" id="serviceOverlay">
+        <div class="service-overlay-content">
+            <span class="close-overlay" id="closeOverlay">&times;</span>
+            <h3 id="overlayTitle">Service Name</h3>
+            <p id="overlayDesc">Full description of the selected service will appear here.</p>
+            <p>
+                <a href="#" target="_blank" id="whatsappBtn" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Request This Service
+                </a>
+            </p>
+        </div>
     </div>
-  </section>
 
-  <footer>
-    <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-    <p>📍 South Africa, Mpumalanga, Mbombela | 📧 info@cmstudio.com</p>
-  </footer>
+    <footer>
+        <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+        <p>📍 South Africa, Mpumalanga, Mbombela | 📧 info@cmstudio.com</p>
+    </footer>
 
-  <script>
-    // Mobile nav toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    navToggle.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
-      document.body.style.overflow = open ? 'hidden' : '';
-      navToggle.innerHTML = open ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    document.querySelectorAll('#mobile-nav a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        mobileNav.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
-      });
-    });
-  </script>
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        navToggle.addEventListener('click', () => {
+            const open = mobileNav.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+            document.body.style.overflow = open ? 'hidden' : '';
+            navToggle.innerHTML = open ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('#mobile-nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Service Overlay logic
+        const serviceCards = document.querySelectorAll('.service-card');
+        const overlay = document.getElementById('serviceOverlay');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlayDesc = document.getElementById('overlayDesc');
+        const closeOverlay = document.getElementById('closeOverlay');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const whatsappNumber = '27818401398'; // Your WhatsApp number
+
+        const serviceDetails = {
+            "Graphic Design": "We create stunning visuals, logos, brochures, and graphics that elevate your brand identity and leave a lasting impression.",
+            "Web Design": "Modern responsive websites tailored to your business needs with CMS, SEO optimization, and custom design.",
+            "E-commerce": "Optimized online stores that convert visitors into customers. Shopify, WooCommerce, or custom platforms.",
+            "Branding": "Build a strong brand identity with logos, color palettes, typography, and brand guidelines.",
+            "Digital Marketing": "Targeted campaigns including social media, ads, email marketing, and analytics to grow your brand.",
+            "Photography": "Professional photoshoots for products, teams, events, and marketing purposes.",
+            "Videography": "High-quality videos, motion graphics, ads, and storytelling content.",
+            "Social Media": "Engaging content creation, reels, and community management to grow your social presence."
+        };
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const service = card.dataset.service;
+                overlayTitle.textContent = service;
+                overlayDesc.textContent = serviceDetails[service];
+
+                // WhatsApp link
+                const message = `Hello! I would like to request your service: ${service}`;
+                whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeOverlay.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
 </body>
 
 </html>

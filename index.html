@@ -150,65 +150,96 @@
     }
 
     /* HERO */
-.hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  padding: 0 20px;
-  padding-top: 84px; /* leave space for fixed header */
-  overflow: hidden;
-  background-color: #ff1a3c;
-}
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      padding-top: 84px;
+    }
 
-/* Overlay for background images with opacity effect */
-.hero-overlay {
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-  transition: opacity 0.3s ease, background-image 0.5s ease;
-  opacity: 1;
-}
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+      transition: background-image 0.5s ease;
+      opacity: 1;
+      /* fully visible */
+    }
 
-/* Hero text */
-.hero h2 {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 20px;
-}
+    .hero-dark-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      /* adjust darkness */
+      z-index: -1;
+    }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-}
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
 
-/* Cursor circle exactly like your original */
-.cursor-circle {
-  position: absolute;
-  top:0;
-  left:0;
-  transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-  font-size: 14px;
-  opacity: 0.7;
-  transition: transform 0.05s ease;
-  z-index: 10;
-}
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .cursor-circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      color: #fff;
+      opacity: 0.7;
+      transition: transform 0.05s ease;
+      z-index: 10;
+    }
+
+
+    /* Cursor circle exactly like your original */
+    .cursor-circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      font-size: 14px;
+      opacity: 0.7;
+      transition: transform 0.05s ease;
+      z-index: 10;
+    }
 
 
     #whatsappButton {
@@ -1008,15 +1039,22 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div>
+    <div class="hero-content">
       <h2>We Bring Your Ideas To Life</h2>
       <p>Creative Media Studios – Where design meets innovation.</p>
       <a href="services.html" class="btn">Explore Services</a>
     </div>
+
+    <!-- Dark overlay for readability -->
+    <div class="hero-dark-overlay"></div>
+
+    <!-- Background image overlay -->
+    <div class="hero-overlay"></div>
+
     <!-- Cursor circle -->
     <div class="cursor-circle">Drag to move</div>
-
   </section>
+
 
 
   <section class="interactive-section">
@@ -1345,69 +1383,69 @@
     btn.addEventListener("click", () => wrapper.classList.toggle("active"));
 
     // Hero slideshow with drag
-const hero = document.querySelector('.hero');
-const heroImages = [
-    'graphic.jpg',
-    'web.jpg',
-    'digital_m.jpg',
-    'photography.jpg',
-    'video.jpg',
-    'branding.jpg',
-];
-let current = 0;
+    const hero = document.querySelector('.hero');
+    const heroImages = [
+      'web.jpg',
+      'graphic.jpg',
+      'digital_m.jpg',
+      'photography.jpg',
+      'video.jpg',
+      'branding.jpg'
+    ];
+    let current = 0;
 
-// Initial background
-hero.style.backgroundImage = `url(${heroImages[current]})`;
-hero.style.transition = 'background-image 0.5s ease, opacity 0.3s ease';
+    // Initial background
+    hero.style.backgroundImage = `url(${heroImages[current]})`;
+    hero.style.transition = 'background-image 0.5s ease, opacity 0.3s ease';
 
-// Cursor circle
-const cursorCircle = document.querySelector('.cursor-circle');
-let isDragging = false;
-let startX = 0;
+    // Cursor circle
+    const cursorCircle = document.querySelector('.cursor-circle');
+    let isDragging = false;
+    let startX = 0;
 
-hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    cursorCircle.style.transform = `translate(${x}px, ${y}px)`;
-});
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      cursorCircle.style.transform = `translate(${x}px, ${y}px)`;
+    });
 
-// Drag start
-hero.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startX = e.clientX;
-    hero.style.opacity = 0.6; // decrease opacity while dragging
-});
-hero.addEventListener('touchstart', (e) => {
-    isDragging = true;
-    startX = e.touches[0].clientX;
-    hero.style.opacity = 0.6;
-});
+    // Drag start
+    hero.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      hero.style.opacity = 0.6; // decrease opacity while dragging
+    });
+    hero.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      hero.style.opacity = 0.6;
+    });
 
-// Drag end
-function endDrag(e) {
-    if (!isDragging) return;
-    let endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
-    const diff = endX - startX;
+    // Drag end
+    function endDrag(e) {
+      if (!isDragging) return;
+      let endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
+      const diff = endX - startX;
 
-    if (diff > 30) {
+      if (diff > 30) {
         // drag right -> previous image
         current = (current - 1 + heroImages.length) % heroImages.length;
-    } else if (diff < -30) {
+      } else if (diff < -30) {
         // drag left -> next image
         current = (current + 1) % heroImages.length;
+      }
+      hero.style.backgroundImage = `url(${heroImages[current]})`;
+      hero.style.opacity = 1; // reset opacity
+      isDragging = false;
     }
-    hero.style.backgroundImage = `url(${heroImages[current]})`;
-    hero.style.opacity = 1; // reset opacity
-    isDragging = false;
-}
 
-hero.addEventListener('mouseup', endDrag);
-hero.addEventListener('mouseleave', () => { if(isDragging) hero.style.opacity=1; isDragging=false; });
-hero.addEventListener('touchend', endDrag);
-hero.addEventListener('touchcancel', () => { hero.style.opacity=1; isDragging=false; });
+    hero.addEventListener('mouseup', endDrag);
+    hero.addEventListener('mouseleave', () => { if (isDragging) hero.style.opacity = 1; isDragging = false; });
+    hero.addEventListener('touchend', endDrag);
+    hero.addEventListener('touchcancel', () => { hero.style.opacity = 1; isDragging = false; });
 
-    
+
 
   </script>
 </body>

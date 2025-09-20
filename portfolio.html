@@ -117,6 +117,29 @@
             cursor: pointer;
         }
 
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 1;
+            animation: bubble-float 1s ease-out forwards;
+            z-index: 9999;
+            /* ensure they appear above everything */
+        }
+
+        @keyframes bubble-float {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(calc(var(--x) * 1px), calc(var(--y) * -1px)) scale(0.7);
+                opacity: 0;
+            }
+        }
+
+
         .mobile-nav {
             display: none;
             position: fixed;
@@ -464,6 +487,39 @@
                 navToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
+
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const rect = link.getBoundingClientRect();
+
+                for (let i = 0; i < 5; i++) { // 5 bubbles per click
+                    const bubble = document.createElement('span');
+                    bubble.classList.add('bubble');
+
+                    // Set initial position (center of link)
+                    bubble.style.left = (rect.left + rect.width / 2) + 'px';
+                    bubble.style.top = (rect.top + rect.height / 2) + 'px';
+
+                    // Random direction
+                    bubble.style.setProperty('--x', Math.random() * 60 - 30); // left/right
+                    bubble.style.setProperty('--y', Math.random() * 80 + 40); // upward
+
+                    // Random size (bigger bubbles)
+                    const size = Math.random() * 20 + 20; // 20px ~ 40px
+                    bubble.style.width = size + 'px';
+                    bubble.style.height = size + 'px';
+
+                    // Match nav hover color
+                    bubble.style.background = '#ff4d6d';
+
+                    document.body.appendChild(bubble);
+
+                    // Remove after animation
+                    setTimeout(() => bubble.remove(), 1000);
+                }
+            });
+        });
+
 
         // Portfolio Modal
         const portfolioItems = document.querySelectorAll('.portfolio-item');

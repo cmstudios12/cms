@@ -2,260 +2,376 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CMStudio - Privacy Policy</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-/* RESET */
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:'Poppins',sans-serif;background:#0d1b2a;color:#fff;overflow-x:hidden;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMStudio - Privacy Policy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* HEADER */
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  background:#0d1b2a;
-  position:sticky;
-  top:0;
-  z-index:20;
-}
-header .logo img {height:50px;}
-nav ul {display:flex;gap:25px;list-style:none;}
-nav a {color:#fff;text-decoration:none;font-weight:600;transition:color 0.3s;}
-nav a:hover {color:#ff4d6d;}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d1b2a;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-/* Hamburger */
-.nav-toggle {display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;cursor:pointer;z-index:30;}
-.nav-toggle span {display:block;height:3px;width:100%;background:#ff4d6d;border-radius:2px;transition:all 0.4s;}
-.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-.nav-toggle.active span:nth-child(2){opacity:0;}
-.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #0d1b2a;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
 
-/* Mobile nav */
-.mobile-nav {
-  display:flex;
-  flex-direction:column;
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:70%;
-  height:100%;
-  background:#111c2c;
-  padding:100px 20px;
-  gap:30px;
-  transition:right 0.4s ease;
-  z-index:25;
-}
-.mobile-nav ul {list-style:none;display:flex;flex-direction:column;gap:25px;}
-.mobile-nav ul li a {color:#ff4d6d;text-decoration:none;font-size:1.2rem;font-weight:600;}
-.mobile-nav.show {right:0;}
+        header .logo img {
+            height: 50px;
+        }
 
-/* Overlay */
-.overlay {
-  display:none;
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,0.6);
-  z-index:15;
-  cursor:pointer;
-}
-.overlay.show {display:block;}
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
 
-/* MEDIA QUERY */
-@media(max-width:992px){
-  nav {display:none;}
-  .nav-toggle {display:flex;}
-}
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
 
-/* MAIN CONTENT */
-main {
-  max-width:1000px;
-  margin:40px auto;
-  padding:20px;
-  position:relative;
-  z-index:1;
-}
-main h1 {text-align:center;font-size:2.8rem;margin-bottom:40px;color:#ff4d6d;}
-.clause {
-  background:rgba(255,77,109,0.08);
-  border-left:4px solid #ff4d6d;
-  padding:20px 25px;
-  margin-bottom:25px;
-  border-radius:8px;
-}
-.clause h2 {color:#ff4d6d;margin-bottom:10px;}
-.clause p {line-height:1.6;}
+        nav a:hover {
+            color: #ff4d6d;
+        }
 
-/* FOOTER */
-footer {
-  background:#0d1b2a;
-  color:#fff;
-  padding:60px 20px;
-  text-align:center;
-}
-footer a {color:#ff4d6d;text-decoration:none;}
-footer a:hover {color:#ff1a57;}
-.footer-social a {margin:0 10px;font-size:1.3rem;color:#ff4d6d;transition:transform 0.3s,color 0.3s;}
-.footer-social a:hover {transform:scale(1.2);color:#ff1a57;}
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 30;
+        }
 
-/* BACKGROUND CANVAS */
-#bg-canvas {
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  z-index:0;
-  pointer-events:none;
-}
-</style>
+        .nav-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #ff4d6d;
+            border-radius: 2px;
+            transition: all 0.4s;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100%;
+            background: #111c2c;
+            padding: 100px 20px;
+            gap: 30px;
+            transition: right 0.4s ease;
+            z-index: 25;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .mobile-nav ul li a {
+            color: #ff4d6d;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .mobile-nav.show {
+            right: 0;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 15;
+            cursor: pointer;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* MEDIA QUERY */
+        @media(max-width:992px) {
+            nav {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        main h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: #ff4d6d;
+        }
+
+        .clause {
+            background: rgba(255, 77, 109, 0.08);
+            border-left: 4px solid #ff4d6d;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .clause h2 {
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        .clause p {
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ff4d6d;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ff1a57;
+        }
+
+        .footer-social a {
+            margin: 0 10px;
+            font-size: 1.3rem;
+            color: #ff4d6d;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2);
+            color: #ff1a57;
+        }
+
+        /* BACKGROUND CANVAS */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- Background Canvas -->
-<canvas id="bg-canvas"></canvas>
+    <!-- Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
 
-<!-- HEADER -->
-<header>
-  <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="nav-toggle" aria-label="Open menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tech-services.html">Tech Services</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-toggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
 
-<!-- Overlay -->
-<div class="overlay"></div>
+    <!-- Overlay -->
+    <div class="overlay"></div>
 
-<!-- Mobile nav -->
-<div class="mobile-nav">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</div>
+    <!-- Mobile nav -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tech-services.html">Tech Services</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
-<!-- MAIN CONTENT -->
-<main>
-  <h1>Privacy Policy</h1>
+    <!-- MAIN CONTENT -->
+    <main>
+        <h1>Privacy Policy</h1>
 
-  <div class="clause">
-    <h2>1. Information We Collect</h2>
-    <p>We may collect personal information you provide when contacting us or using our services, including your name, email, and message.</p>
-  </div>
+        <div class="clause">
+            <h2>1. Information We Collect</h2>
+            <p>We may collect personal information you provide when contacting us or using our services, including your
+                name, email, and message.</p>
+        </div>
 
-  <div class="clause">
-    <h2>2. Use of Information</h2>
-    <p>Your information is used solely to respond to inquiries, provide services, and improve our website.</p>
-  </div>
+        <div class="clause">
+            <h2>2. Use of Information</h2>
+            <p>Your information is used solely to respond to inquiries, provide services, and improve our website.</p>
+        </div>
 
-  <div class="clause">
-    <h2>3. Sharing of Information</h2>
-    <p>We do not sell, trade, or rent your personal information to third parties.</p>
-  </div>
+        <div class="clause">
+            <h2>3. Sharing of Information</h2>
+            <p>We do not sell, trade, or rent your personal information to third parties.</p>
+        </div>
 
-  <div class="clause">
-    <h2>4. Security</h2>
-    <p>We implement appropriate measures to protect your data but cannot guarantee absolute security over the internet.</p>
-  </div>
+        <div class="clause">
+            <h2>4. Security</h2>
+            <p>We implement appropriate measures to protect your data but cannot guarantee absolute security over the
+                internet.</p>
+        </div>
 
-  <div class="clause">
-    <h2>5. Updates to Policy</h2>
-    <p>We may update this privacy policy periodically. Continued use of our site constitutes acceptance of the updated policy.</p>
-  </div>
-</main>
+        <div class="clause">
+            <h2>5. Updates to Policy</h2>
+            <p>We may update this privacy policy periodically. Continued use of our site constitutes acceptance of the
+                updated policy.</p>
+        </div>
+    </main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-info">
-    <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-    <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
-  </div>
-  <div class="footer-links">
-    <a href="terms.html">Terms & Conditions</a> |
-    <a href="privacy.html">Privacy Policy</a>
-  </div>
-  <div class="footer-social">
-    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-info">
+            <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+            <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+        </div>
+        <div class="footer-links">
+            <a href="terms.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
 
-<script>
-  // Hamburger toggle
-  const navToggle = document.querySelector('.nav-toggle');
-  const mobileNav = document.querySelector('.mobile-nav');
-  const overlay = document.querySelector('.overlay');
+    <script>
+        // Hamburger toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.overlay');
 
-  function toggleMenu() {
-    navToggle.classList.toggle('active');
-    mobileNav.classList.toggle('show');
-    overlay.classList.toggle('show');
-  }
+        function toggleMenu() {
+            navToggle.classList.toggle('active');
+            mobileNav.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
 
-  navToggle.addEventListener('click', toggleMenu);
-  overlay.addEventListener('click', toggleMenu);
+        navToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
 
-  // Background circles
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
+        // Background circles
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-  const circles = [];
-  const numCircles = 10;
-  for (let i = 0; i < numCircles; i++) {
-    circles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: 10 + Math.random() * 12,
-      dx: (Math.random() - 0.5) * 0.2,
-      dy: (Math.random() - 0.5) * 0.2,
-      color: Math.random() < 0.5 ? 'rgba(255,77,109,0.25)' : 'rgba(255,77,109,0.15)'
-    });
-  }
+        const circles = [];
+        const numCircles = 10;
+        for (let i = 0; i < numCircles; i++) {
+            circles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: 10 + Math.random() * 12,
+                dx: (Math.random() - 0.5) * 0.2,
+                dy: (Math.random() - 0.5) * 0.2,
+                color: Math.random() < 0.5 ? 'rgba(255,77,109,0.25)' : 'rgba(255,77,109,0.15)'
+            });
+        }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let c of circles) {
-      c.x += c.dx;
-      c.y += c.dy;
-      if (c.x - c.radius < 0 || c.x + c.radius > canvas.width) c.dx *= -1;
-      if (c.y - c.radius < 0 || c.y + c.radius > canvas.height) c.dy *= -1;
-      ctx.beginPath();
-      ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
-      ctx.fillStyle = c.color;
-      ctx.fill();
-    }
-    requestAnimationFrame(animate);
-  }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let c of circles) {
+                c.x += c.dx;
+                c.y += c.dy;
+                if (c.x - c.radius < 0 || c.x + c.radius > canvas.width) c.dx *= -1;
+                if (c.y - c.radius < 0 || c.y + c.radius > canvas.height) c.dy *= -1;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
+                ctx.fillStyle = c.color;
+                ctx.fill();
+            }
+            requestAnimationFrame(animate);
+        }
 
-  animate();
-</script>
+        animate();
+    </script>
 
 </body>
+
 </html>

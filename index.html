@@ -781,7 +781,7 @@
       color: #fff;
       font-size: 22px;
       cursor: pointer;
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease;
       z-index: 10;
     }
@@ -798,14 +798,45 @@
     }
 
     /* Circular distribution */
-    .navbar-wrapper.active .navbar-link:nth-child(1) { transform: translate(-50%, -50%) translateY(-70px); transition-delay: 0.05s; }
-    .navbar-wrapper.active .navbar-link:nth-child(2) { transform: translate(-50%, -50%) translate(50px, -50px); transition-delay: 0.1s; }
-    .navbar-wrapper.active .navbar-link:nth-child(3) { transform: translate(-50%, -50%) translateX(70px); transition-delay: 0.15s; }
-    .navbar-wrapper.active .navbar-link:nth-child(4) { transform: translate(-50%, -50%) translate(50px, 50px); transition-delay: 0.2s; }
-    .navbar-wrapper.active .navbar-link:nth-child(5) { transform: translate(-50%, -50%) translateY(70px); transition-delay: 0.25s; }
-    .navbar-wrapper.active .navbar-link:nth-child(6) { transform: translate(-50%, -50%) translate(-50px, 50px); transition-delay: 0.3s; }
-    .navbar-wrapper.active .navbar-link:nth-child(7) { transform: translate(-50%, -50%) translateX(-70px); transition-delay: 0.35s; }
-    .navbar-wrapper.active .navbar-link:nth-child(8) { transform: translate(-50%, -50%) translate(-50px, -50px); transition-delay: 0.4s; }
+    .navbar-wrapper.active .navbar-link:nth-child(1) {
+      transform: translate(-50%, -50%) translateY(-70px);
+      transition-delay: 0.05s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(2) {
+      transform: translate(-50%, -50%) translate(50px, -50px);
+      transition-delay: 0.1s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(3) {
+      transform: translate(-50%, -50%) translateX(70px);
+      transition-delay: 0.15s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(4) {
+      transform: translate(-50%, -50%) translate(50px, 50px);
+      transition-delay: 0.2s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(5) {
+      transform: translate(-50%, -50%) translateY(70px);
+      transition-delay: 0.25s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(6) {
+      transform: translate(-50%, -50%) translate(-50px, 50px);
+      transition-delay: 0.3s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(7) {
+      transform: translate(-50%, -50%) translateX(-70px);
+      transition-delay: 0.35s;
+    }
+
+    .navbar-wrapper.active .navbar-link:nth-child(8) {
+      transform: translate(-50%, -50%) translate(-50px, -50px);
+      transition-delay: 0.4s;
+    }
 
     /* Rotate plus into X */
     .navbar-wrapper.active .navbar-btn {
@@ -814,17 +845,56 @@
 
     /* Responsive for small screens */
     @media (max-width: 600px) {
-      .navbar-wrapper { width: 120px; height: 120px; bottom: 15px; left: 15px; }
-      .navbar-link { width: 40px; height: 40px; font-size: 16px; }
-      .navbar-btn { width: 50px; height: 50px; font-size: 20px; }
-      .navbar-wrapper.active .navbar-link:nth-child(1) { transform: translate(-50%, -50%) translateY(-60px); }
-      .navbar-wrapper.active .navbar-link:nth-child(2) { transform: translate(-50%, -50%) translate(40px, -40px); }
-      .navbar-wrapper.active .navbar-link:nth-child(3) { transform: translate(-50%, -50%) translateX(60px); }
-      .navbar-wrapper.active .navbar-link:nth-child(4) { transform: translate(-50%, -50%) translate(40px, 40px); }
-      .navbar-wrapper.active .navbar-link:nth-child(5) { transform: translate(-50%, -50%) translateY(60px); }
-      .navbar-wrapper.active .navbar-link:nth-child(6) { transform: translate(-50%, -50%) translate(-40px, 40px); }
-      .navbar-wrapper.active .navbar-link:nth-child(7) { transform: translate(-50%, -50%) translateX(-60px); }
-      .navbar-wrapper.active .navbar-link:nth-child(8) { transform: translate(-50%, -50%) translate(-40px, -40px); }
+      .navbar-wrapper {
+        width: 120px;
+        height: 120px;
+        bottom: 15px;
+        left: 15px;
+      }
+
+      .navbar-link {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .navbar-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(1) {
+        transform: translate(-50%, -50%) translateY(-60px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(2) {
+        transform: translate(-50%, -50%) translate(40px, -40px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(3) {
+        transform: translate(-50%, -50%) translateX(60px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(4) {
+        transform: translate(-50%, -50%) translate(40px, 40px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(5) {
+        transform: translate(-50%, -50%) translateY(60px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(6) {
+        transform: translate(-50%, -50%) translate(-40px, 40px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(7) {
+        transform: translate(-50%, -50%) translateX(-60px);
+      }
+
+      .navbar-wrapper.active .navbar-link:nth-child(8) {
+        transform: translate(-50%, -50%) translate(-40px, -40px);
+      }
     }
   </style>
 </head>
@@ -874,14 +944,21 @@
 
   <div class="navbar-wrapper">
     <div class="navbar">
-      <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="navbar-link"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="https://www.facebook.com/YOUR_PAGE" target="_blank" class="navbar-link"><i class="fa-brands fa-facebook"></i></a>
-      <a href="tel:+YOUR_NUMBER" class="navbar-link"><i class="fa-solid fa-square-phone"></i></a>
-      <a href="https://discord.gg/YOUR_SERVER" target="_blank" class="navbar-link"><i class="fa-brands fa-discord"></i></a>
-      <a href="https://github.com/YOUR_USERNAME" target="_blank" class="navbar-link"><i class="fa-brands fa-github"></i></a>
-      <a href="https://t.me/YOUR_USERNAME" target="_blank" class="navbar-link"><i class="fa-brands fa-telegram"></i></a>
-      <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" class="navbar-link"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" class="navbar-link"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://wa.me/27818401398" target="_blank" class="navbar-link"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" target="_blank" class="navbar-link"><i
+          class="fa-brands fa-facebook"></i></a>
+      <a href="mailto:cmstudiosza@gmail.com" class="navbar-link"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+27818401398" class="navbar-link"><i class="fa-solid fa-square-phone"></i></a>
+      <a href="https://discord.gg/YOUR_SERVER" target="_blank" class="navbar-link"><i
+          class="fa-brands fa-discord"></i></a>
+      <a href="https://www.instagram.com/@n.t.a.n.d.o.e" target="_blank" class="navbar-link">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.threads.net/@n.t.a.n.d.o.e" target="_blank" class="navbar-link">
+        <i class="fab fa-threads"></i>
+      </a>
+      <a href="https://www.tiktok.com/@n.t.a.n.d.o0" target="_blank" class="navbar-link"><i
+          class="fab fa-tiktok"></i></a>
     </div>
     <div class="navbar-btn">
       <i class="fas fa-plus"></i>
@@ -1227,6 +1304,7 @@
     const wrapper = document.querySelector(".navbar-wrapper");
     const btn = document.querySelector(".navbar-btn");
     btn.addEventListener("click", () => wrapper.classList.toggle("active"));
+    
 
   </script>
 </body>

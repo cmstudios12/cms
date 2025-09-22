@@ -222,23 +222,30 @@
     }
 
     #welcome-text {
-  font-size: 2.5rem;
-  color: #ff4d6d;
-  white-space: nowrap;
-  display: inline-block;
-}
+      font-size: 2.5rem;
+      color: #ff4d6d;
+      white-space: nowrap;
+      display: inline-block;
+    }
 
-#welcome-text::after {
-  content: '|';
-  display: inline-block;
-  margin-left: 2px;
-  animation: blink 0.7s infinite;
-}
+    #welcome-text::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 2px;
+      animation: blink 0.7s infinite;
+    }
 
-@keyframes blink {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
 
 
     .cursor-circle {
@@ -454,14 +461,15 @@
     }
 
     #admin-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* behind content */
-  pointer-events: none;
-}
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      /* behind content */
+      pointer-events: none;
+    }
 
     /* Canvas covers the spotlight */
     #tech-canvas {
@@ -800,63 +808,63 @@
 
 
     #contact {
-  background: #0d1b2a;
-  color: #fff;
-  padding: 80px 20px;
-  text-align: center;
-  font-size: 1rem;
-}
+      background: #0d1b2a;
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  align-items: center;
-}
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+    }
 
-.footer-info p {
-  margin: 5px 0;
-  color: #fff;
-}
+    .footer-info p {
+      margin: 5px 0;
+      color: #fff;
+    }
 
-.footer-info a {
-  color: #ff4d6d;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+    .footer-info a {
+      color: #ff4d6d;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-.footer-info a:hover {
-  color: #ff1a57;
-}
+    .footer-info a:hover {
+      color: #ff1a57;
+    }
 
-.footer-links {
-  margin: 10px 0;
-}
+    .footer-links {
+      margin: 10px 0;
+    }
 
-.footer-links a {
-  color: #ff4d6d;
-  text-decoration: none;
-  margin: 0 10px;
-  transition: color 0.3s;
-}
+    .footer-links a {
+      color: #ff4d6d;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
 
-.footer-links a:hover {
-  color: #ff1a57;
-}
+    .footer-links a:hover {
+      color: #ff1a57;
+    }
 
-.footer-social a {
-  margin: 0 15px;
-  font-size: 1.5rem;
-  color: #ff4d6d;
-  transition: transform 0.3s, color 0.3s;
-}
+    .footer-social a {
+      margin: 0 15px;
+      font-size: 1.5rem;
+      color: #ff4d6d;
+      transition: transform 0.3s, color 0.3s;
+    }
 
-.footer-social a:hover {
-  transform: scale(1.2);
-  color: #ff1a57;
-}
+    .footer-social a:hover {
+      transform: scale(1.2);
+      color: #ff1a57;
+    }
 
 
     /* RESPONSIVE ADJUSTMENTS */
@@ -1120,7 +1128,7 @@
   <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
     <ul>
       <li><a href="index.html">Home</a></li>
-        <li><a href="tech-services.html">Tech Service</a></li>
+      <li><a href="tech-services.html">Tech Service</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="about.html">About</a></li>
@@ -1162,21 +1170,21 @@
 
 
   <section class="hero" id="home">
-  <div class="hero-content">
-    <h2 id="welcome-text"></h2>
-    <p>Creative Media Studios – Where design meets innovation.</p>
-    <a href="services.html" class="btn">Explore Services</a>
-  </div>
+    <div class="hero-content">
+      <h2 id="welcome-text"></h2>
+      <p>Creative Media Studios – Where design meets innovation.</p>
+      <a href="services.html" class="btn">Explore Services</a>
+    </div>
 
-  <!-- Dark overlay for readability -->
-  <div class="hero-dark-overlay"></div>
+    <!-- Dark overlay for readability -->
+    <div class="hero-dark-overlay"></div>
 
-  <!-- Background image overlay -->
-  <div class="hero-overlay"></div>
+    <!-- Background image overlay -->
+    <div class="hero-overlay"></div>
 
-  <!-- Cursor circle -->
-  <div class="cursor-circle">Drag to move</div>
-</section>
+    <!-- Cursor circle -->
+    <div class="cursor-circle">Drag to move</div>
+  </section>
 
 
 
@@ -1226,40 +1234,9 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="section" id="testimonials">
-    <h3>What Clients Say</h3>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>"CMStudio transformed our online presence. The website is modern and easy to use. Highly recommended!"</p>
-        <h5>- Sarah M.</h5>
-      </div>
-      <div class="testimonial">
-        <p>"Their branding and marketing strategies boosted our sales by 40%. Amazing team!"</p>
-        <h5>- John D.</h5>
-      </div>
-      <div class="testimonial">
-        <p>"Professional, creative, and always on time. CMStudio delivers excellence every time."</p>
-        <h5>- Amanda K.</h5>
-      </div>
-      <div class="testimonial">
-        <p>"Working with CMStudio was a game changer. Our social media engagement skyrocketed!"</p>
-        <h5>- Michael R.</h5>
-      </div>
-      <div class="testimonial">
-        <p>"They perfectly captured our brand identity and turned it into a stunning website."</p>
-        <h5>- Lisa T.</h5>
-      </div>
-      <div class="testimonial">
-        <p>"The creative team at CMStudio really understands what the client wants. Exceptional work!"</p>
-        <h5>- Daniel S.</h5>
-      </div>
-      <div class="testimonial">
-        <p>"From concept to delivery, CMStudio exceeded our expectations. Highly recommend their services!"</p>
-        <h5>- Natasha P.</h5>
-      </div>
-    </div>
-  </section>
+  <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+  <script src="https://elfsightcdn.com/platform.js" async></script>
+  <div class="elfsight-app-efc96565-a755-431b-a8d1-3584f7110896" data-elfsight-app-lazy></div>
 
 
   <!-- CTA Section -->
@@ -1319,83 +1296,84 @@
 
   <!-- FOOTER -->
   <footer id="contact">
-  <div class="footer-container">
-    <!-- Company Info -->
-    <div class="footer-info">
-      <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-      <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
-    </div>
+    <div class="footer-container">
+      <!-- Company Info -->
+      <div class="footer-info">
+        <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+        <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+      </div>
 
-    <!-- Footer Links -->
-    <div class="footer-links">
-      <a href="terms.html">Terms & Conditions</a> |
-      <a href="privacy.html">Privacy Policy</a>
-    </div>
+      <!-- Footer Links -->
+      <div class="footer-links">
+        <a href="terms.html">Terms & Conditions</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
 
-    <!-- Social Media -->
-    <div class="footer-social">
-      <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/@n.t.a.n.d.o.e" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://wa.me/27818401398" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <!-- Social Media -->
+      <div class="footer-social">
+        <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" aria-label="Facebook"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/@n.t.a.n.d.o.e" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/27818401398" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 
   <script>
 
     const messages = [
-  "Welcome to Creative Media Studios",
-  "We Bring Your Ideas To Life",
-  "Where Design Meets Innovation",
-  "Crafting Digital Experiences That Inspire",
-  "Turning Your Vision Into Reality"
-];
+      "Welcome to Creative Media Studios",
+      "We Bring Your Ideas To Life",
+      "Where Design Meets Innovation",
+      "Crafting Digital Experiences That Inspire",
+      "Turning Your Vision Into Reality"
+    ];
 
-const welcomeElement = document.getElementById('welcome-text');
-let msgIndex = 0;
-let charIndex = 0;
-let typingSpeed = 100;
-let deletingSpeed = 50;
-let pauseTime = 1500;
+    const welcomeElement = document.getElementById('welcome-text');
+    let msgIndex = 0;
+    let charIndex = 0;
+    let typingSpeed = 100;
+    let deletingSpeed = 50;
+    let pauseTime = 1500;
 
-function typeLoop() {
-  const currentMessage = messages[msgIndex];
+    function typeLoop() {
+      const currentMessage = messages[msgIndex];
 
-  if (charIndex < currentMessage.length) {
-    // Type
-    welcomeElement.textContent = currentMessage.substring(0, charIndex + 1);
-    charIndex++;
-    setTimeout(typeLoop, typingSpeed);
-  } else {
-    // Pause before deleting
-    setTimeout(() => {
-      deleteLoop();
-    }, pauseTime);
-  }
-}
+      if (charIndex < currentMessage.length) {
+        // Type
+        welcomeElement.textContent = currentMessage.substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(typeLoop, typingSpeed);
+      } else {
+        // Pause before deleting
+        setTimeout(() => {
+          deleteLoop();
+        }, pauseTime);
+      }
+    }
 
-function deleteLoop() {
-  const currentMessage = messages[msgIndex];
+    function deleteLoop() {
+      const currentMessage = messages[msgIndex];
 
-  if (charIndex > 0) {
-    // Delete
-    welcomeElement.textContent = currentMessage.substring(0, charIndex - 1);
-    charIndex--;
-    setTimeout(deleteLoop, deletingSpeed);
-  } else {
-    // Next message
-    msgIndex = (msgIndex + 1) % messages.length;
-    setTimeout(typeLoop, typingSpeed);
-  }
-}
+      if (charIndex > 0) {
+        // Delete
+        welcomeElement.textContent = currentMessage.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(deleteLoop, deletingSpeed);
+      } else {
+        // Next message
+        msgIndex = (msgIndex + 1) % messages.length;
+        setTimeout(typeLoop, typingSpeed);
+      }
+    }
 
-// Start on page load
-window.addEventListener('load', typeLoop);
+    // Start on page load
+    window.addEventListener('load', typeLoop);
 
 
     // Initial state
@@ -1449,7 +1427,7 @@ window.addEventListener('load', typeLoop);
       }
     });
 
-    
+
 
     document.querySelectorAll('nav ul li a').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -1807,7 +1785,7 @@ window.addEventListener('load', typeLoop);
     hero.addEventListener('touchend', endDrag);
     hero.addEventListener('touchcancel', () => { hero.style.opacity = 1; isDragging = false; });
 
-    
+
 
   </script>
 </body>

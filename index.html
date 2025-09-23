@@ -1638,25 +1638,6 @@
       });
     });
 
-    const testimonials = document.querySelectorAll('.testimonial');
-
-    function getWeekNumber(d) {
-      d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-      const dayNum = d.getUTCDay() || 7;
-      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-    }
-
-    function showWeeklyTestimonial() {
-      const week = getWeekNumber(new Date());
-      const index = week % testimonials.length;
-      testimonials.forEach((t, i) => t.classList.remove('active'));
-      testimonials[index].classList.add('active');
-    }
-
-    showWeeklyTestimonial();
-
     // close mobile nav if viewport changes to desktop
     window.addEventListener('resize', () => {
       if (window.innerWidth > 980 && mobileNav.classList.contains('open')) {

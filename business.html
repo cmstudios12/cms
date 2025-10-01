@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMStudio | Business Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #00aaff;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 20px;
+            font-size: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar .contact-info span {
+            margin-right: 20px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .top-bar .contact-info i {
+            margin-right: 6px;
+        }
+
+        .top-bar .contact-info a {
+            color: white;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-bar-right .social-icons a {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .booking-btn {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0d1b2a;
+            color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff4d6d;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 14px;
+            right: 14px;
+            background: #0d1b2a;
+            padding: 18px;
+            border-radius: 12px;
+            z-index: 1050;
+        }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-nav a {
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 6px;
+            display: block;
+        }
+
+        /* Hero */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)),
+                url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62') no-repeat center/cover;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .hero .btn {
+            background: #ff4d6d;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* Section */
+        .section {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section h3 {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 60px;
+            font-weight: 800;
+            color: #0d1b2a;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #ff4d6d;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: #0d1b2a;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item img {
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 27, 42, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-card h4 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: #0d1b2a;
+        }
+
+        .price-card p {
+            font-size: 1.2rem;
+            color: #ff4d6d;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: #ff4d6d;
+            color: #fff;
+            text-align: center;
+            padding: 60px 30px;
+            border-radius: 15px;
+            margin: 80px auto;
+            max-width: 1000px;
+        }
+
+        .cta-banner h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-banner a {
+            background: #fff;
+            color: #ff4d6d;
+            padding: 15px 50px;
+            margin: 20px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ff4d6d;
+        }
+
+        footer .footer-social a {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: #ff4d6d;
+        }
+
+        @media(max-width:980px) {
+            header {
+                padding: 14px 30px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .section {
+                padding: 70px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="contact-info">
+            <span><i class="fas fa-phone-alt"></i> +27 60 677 4614</span>
+            <span><i class="fas fa-envelope"></i> <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></span>
+            <span><i class="fas fa-map-marker-alt"></i> Mbombela, South Africa</span>
+        </div>
+        <div class="top-bar-right">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <a href="https://wa.me/27606774614?text=Hi%20CMStudio%2C%20I%27m%20interested%20in%20a%20Business%20Plan."
+                target="_blank" class="booking-btn">Request Plan</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="business-plan.html" class="active">Business Plans</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <h2>Professional Business Plan Development</h2>
+            <p>We craft winning business plans to secure funding, guide strategy, and grow your vision.</p>
+            <a href="https://wa.me/27606774614?text=Hi%20CMStudio%2C%20I%27m%20interested%20in%20your%20Business%20Plan%20services."
+                target="_blank" class="btn">Start on WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section">
+        <h3>What’s Included in Our Business Plans</h3>
+        <div class="features-grid">
+            <div class="feature-card"><i class="fas fa-chart-line"></i>
+                <h4>Market Research</h4>
+                <p>Comprehensive analysis of industry trends, competitors, and opportunities.</p>
+            </div>
+            <div class="feature-card"><i class="fas fa-lightbulb"></i>
+                <h4>Business Strategy</h4>
+                <p>Clear goals, positioning, and roadmaps to success.</p>
+            </div>
+            <div class="feature-card"><i class="fas fa-coins"></i>
+                <h4>Financial Projections</h4>
+                <p>3–5 year forecasts with cash flow, profit & loss, and balance sheets.</p>
+            </div>
+            <div class="feature-card"><i class="fas fa-bullhorn"></i>
+                <h4>Marketing Plan</h4>
+                <p>Effective strategies to reach your target audience and grow sales.</p>
+            </div>
+            <div class="feature-card"><i class="fas fa-users"></i>
+                <h4>Management Structure</h4>
+                <p>Well-defined roles, responsibilities, and team overview.</p>
+            </div>
+            <div class="feature-card"><i class="fas fa-handshake"></i>
+                <h4>Investor Pitch Deck</h4>
+                <p>Professional presentations to impress potential investors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section">
+        <h3>Pricing Packages</h3>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h4>Basic Business Plan</h4>
+                <p>R3,500</p>
+                <p>Perfect for startups and small businesses.</p>
+            </div>
+            <div class="price-card">
+                <h4>Comprehensive Investor Plan</h4>
+                <p>R7,500</p>
+                <p>Detailed plan for investor funding & growth.</p>
+            </div>
+            <div class="price-card">
+                <h4>Custom Plan</h4>
+                <p>From R10,000</p>
+                <p>Tailored solution for your unique business.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section">
+        <h3>Recent Business Plans</h3>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf" alt="Startup Plan">
+                <div class="portfolio-overlay">
+                    <h4>Startup Plan</h4>
+                    <p>Tech & innovation-driven businesses.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Restaurant Plan">
+                <div class="portfolio-overlay">
+                    <h4>Restaurant Plan</h4>
+                    <p>Hospitality & food industry projects.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Corporate Plan">
+                <div class="portfolio-overlay">
+                    <h4>Corporate Expansion</h4>
+                    <p>Large-scale strategic planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <h3>Ready to Secure Funding & Grow Your Business?</h3>
+        <a href="https://wa.me/27818401398?text=Hi%20CMStudio%2C%20I%27m%20interested%20in%20your%20Business%20Plan%20services.%20Please%20assist%20me."
+            target="_blank">
+            Chat With Us on WhatsApp
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+        <p>Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.createElement('div');
+        mobileNav.className = "mobile-nav";
+        mobileNav.innerHTML = `<ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="business-plan.html">Business Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>`;
+        document.body.appendChild(mobileNav);
+        navToggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    </script>
+</body>
+
+</html>

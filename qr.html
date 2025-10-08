@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CMStudio - QR Code Generator</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- QR libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+
+    <style>
+        /* --- RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #071226 0%, #131428 50%, #1b1130 100%);
+            color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(4px);
+        }
+
+        header .logo img {
+            height: 50px;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 22px;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color .2s;
+        }
+
+        nav a:hover {
+            color: #ff4d6d;
+        }
+
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        @media(max-width:992px) {
+            nav {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        /* Background orbs */
+        #bg-orbs {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(26px);
+            opacity: 0.18;
+            transform: translate3d(0, 0, 0);
+            animation: floatOrb linear infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.18;
+            }
+
+            50% {
+                transform: translateY(-40px) scale(1.05);
+                opacity: 0.22;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.18;
+            }
+        }
+
+        /* Main area */
+        main {
+            max-width: 1100px;
+            margin: 70px auto 90px;
+            padding: 24px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .wrap {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 36px;
+            align-items: start;
+        }
+
+        /* Controls card */
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title {
+            color: #ff4d6d;
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+            margin-bottom: 18px;
+        }
+
+        .field {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .field.full {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        label.small {
+            font-size: 0.85rem;
+            color: #bcd;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+            color: #fff;
+            font-size: 0.98rem;
+            outline: none;
+            transition: box-shadow .15s, border-color .15s;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 6px 22px rgba(255, 77, 109, 0.08);
+            border-color: rgba(255, 77, 109, 0.28);
+        }
+
+        .color-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        input[type="color"] {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6), inset 0 -3px 8px rgba(0, 0, 0, 0.35);
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        select,
+        .btn {
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        select {
+            background: rgba(255, 255, 255, 0.02);
+            color: #fff;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, rgba(255, 77, 109, 0.98), rgba(255, 26, 87, 0.95));
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(255, 77, 109, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 50px rgba(255, 77, 109, 0.18);
+        }
+
+        .muted {
+            color: #b6c0d6;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* QR preview */
+        .preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 26px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
+            min-height: 340px;
+            position: relative;
+        }
+
+        .preview .watermark {
+            position: absolute;
+            inset: auto 12px 12px auto;
+            opacity: 0.06;
+            filter: blur(2px);
+            font-weight: 900;
+            font-size: 20px;
+            color: #fff;
+            transform: rotate(-10deg);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        #qrcode {
+            background: #fff;
+            padding: 14px;
+            border-radius: 12px;
+            display: inline-block;
+            transition: transform .18s, box-shadow .18s, opacity .25s;
+            opacity: 0;
+            transform: translateY(8px) scale(0.98);
+        }
+
+        #qrcode.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.6);
+        }
+
+        .preview-title {
+            color: #e6eef8;
+            font-weight: 700;
+        }
+
+        .download-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .download-btn {
+            background: linear-gradient(90deg, #00b4d8, #0096c7);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .12s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* Modal */
+        .logo-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo-modal-content {
+            background: rgba(25, 25, 25, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 100, 0.2);
+            width: 320px;
+            color: #fff;
+        }
+
+        .logo-modal-content input[type="file"] {
+            margin: 15px 0 20px;
+        }
+
+        .logo-modal .btn {
+            background: linear-gradient(135deg, #00b894, #00916e);
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo-modal .btn:hover {
+            background: linear-gradient(135deg, #00e6a8, #00b894);
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: transparent;
+            color: #cbd5e1;
+            padding: 48px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #ff4d6d;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media(max-width:980px) {
+            .wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .preview {
+                order: -1;
+            }
+
+            main {
+                margin: 96px 16px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="bg-orbs" aria-hidden="true"></div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="CMStudio Logo"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tech-services.html">Tech Services</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-toggle" aria-label="Toggle Menu"><span></span><span></span><span></span></div>
+    </header>
+
+    <main>
+        <div class="wrap">
+
+            <!-- Controls -->
+            <section class="card" aria-labelledby="gen-title">
+                <div>
+                    <div class="title" id="gen-title">QR Code Generator</div>
+                    <div class="subtitle">Create branded QR codes instantly — choose any foreground color. Background
+                        will remain <strong>white</strong>.</div>
+                </div>
+
+                <div class="field full">
+                    <label class="small" for="qrText">Link or Text</label>
+                    <input id="qrText" type="text" placeholder="https://your-site.com or any text..."
+                        aria-label="QR text">
+                </div>
+
+                <div class="field">
+                    <div style="flex:1;">
+                        <label class="small">Foreground Color</label>
+                        <div class="color-row">
+                            <input id="qrColor" type="color" value="#0d1b2a" aria-label="Pick QR color">
+                            <div class="muted" id="colorHex" style="font-weight:700;">#0d1b2a</div>
+                        </div>
+                        <div class="muted">Tip: avoid pure white as foreground. Background stays white for scanning.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div style="flex:1;">
+                        <label class="small">Size</label>
+                        <select id="qrSize" aria-label="QR size">
+                            <option value="180">Small (180px)</option>
+                            <option value="250" selected>Standard (250px)</option>
+                            <option value="350">Large (350px)</option>
+                        </select>
+                    </div>
+
+                    <div style="width:140px;">
+                        <label class="small">&nbsp;</label>
+                        <button id="generateBtn" class="btn" title="Generate QR">Generate</button>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:12px;">
+                    <button id="resetBtn" class="secondary-btn">Reset</button>
+                    <div class="spacer"></div>
+                    <div id="status" class="muted" aria-live="polite"></div>
+                </div>
+
+                <p class="muted" style="margin-top:18px;">
+                    Want premium styled QR with logo? Offer clients a custom design.
+                </p>
+                <button id="premiumQRBtn" class="btn"
+                    style="background: linear-gradient(135deg, #00b894, #00916e); margin-top:10px;">
+                    <i class="fas fa-star"></i> Generate Premium QR
+                </button>
+
+            </section>
+
+            <!-- Modal -->
+            <div id="logoModal" class="logo-modal">
+                <div class="logo-modal-content">
+                    <h2>Upload Your Logo</h2>
+                    <input type="file" id="logoUpload" accept="image/*" />
+                    <button id="confirmLogoBtn" class="btn">Generate Premium QR</button>
+                </div>
+            </div>
+
+            <!-- QR Preview -->
+            <aside class="preview" aria-labelledby="preview-title">
+                <div class="preview-title" id="preview-title">Preview</div>
+                <div class="watermark">CMSTUDIOS</div>
+                <div id="qrcode" aria-hidden="true"></div>
+                <div class="download-row">
+                    <button id="downloadBtn" class="download-btn" style="display:none;"><i
+                            class="fa fa-download"></i>&nbsp; Download PNG</button>
+                    <button id="copyBtn" class="secondary-btn" style="display:none;"><i class="fa fa-copy"></i>&nbsp;
+                        Copy Image</button>
+                    <button id="openBtn" class="secondary-btn" style="display:none;"><i
+                            class="fa fa-external-link"></i>&nbsp; Open Image</button>
+                </div>
+                <div class="muted" style="margin-top:10px; text-align:center; font-size:0.92rem;">
+                    White background preserved for scan reliability.
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
+            <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
+        </div>
+        <div class="footer-links">
+            <a href="terms.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-social" style="margin-top:10px;">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // --- Background Orbs ---
+        (function createOrbs() {
+            const container = document.getElementById('bg-orbs');
+            const colors = ['#ff4d6d', '#7b61ff', '#00b4d8', '#ffd60a'];
+            const num = 6;
+            for (let i = 0; i < num; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'orb';
+                const size = 180 + Math.round(Math.random() * 280);
+                orb.style.width = orb.style.height = size + 'px';
+                orb.style.left = Math.random() * 100 + '%';
+                orb.style.top = Math.random() * 80 + '%';
+                orb.style.background = colors[i % colors.length];
+                orb.style.animationDuration = (12 + Math.random() * 12) + 's';
+                orb.style.opacity = 0.12 + Math.random() * 0.14;
+                container.appendChild(orb);
+            }
+        })();
+
+        // --- UI Elements ---
+        const generateBtn = document.getElementById('generateBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const qrText = document.getElementById('qrText');
+        const qrColor = document.getElementById('qrColor');
+        const colorHex = document.getElementById('colorHex');
+        const qrSize = document.getElementById('qrSize');
+
+        const qrContainer = document.getElementById('qrcode');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const openBtn = document.getElementById('openBtn');
+        const status = document.getElementById('status');
+
+        // --- Color Picker ---
+        qrColor.addEventListener('input', () => {
+            colorHex.textContent = qrColor.value;
+        });
+
+        // --- Generate normal QR ---
+        function generateQR() {
+            const text = qrText.value.trim();
+            if (!text) { status.textContent = 'Please enter text/URL'; return; }
+
+            const size = parseInt(qrSize.value) || 250;
+            const color = qrColor.value;
+
+            const qr = new QRious({ value: text, size: size, level: 'H', background: 'white', foreground: color });
+            qrContainer.innerHTML = '';
+            qrContainer.appendChild(qr.canvas);
+            qrContainer.classList.add('visible');
+            status.textContent = 'QR ready';
+            downloadBtn.style.display = 'inline-block';
+            copyBtn.style.display = 'inline-block';
+            openBtn.style.display = 'inline-block';
+        }
+
+        generateBtn.addEventListener('click', generateQR);
+
+        resetBtn.addEventListener('click', () => {
+            qrText.value = ''; qrColor.value = '#0d1b2a'; qrSize.value = '250';
+            colorHex.textContent = '#0d1b2a';
+            qrContainer.innerHTML = ''; qrContainer.classList.remove('visible');
+            downloadBtn.style.display = 'none'; copyBtn.style.display = 'none'; openBtn.style.display = 'none';
+            status.textContent = '';
+        });
+
+        // --- Download / Copy / Open ---
+        downloadBtn.addEventListener('click', () => {
+            const canvas = qrContainer.querySelector('canvas');
+            if (!canvas) return;
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'qr.png';
+            link.click();
+        });
+        copyBtn.addEventListener('click', async () => {
+            const canvas = qrContainer.querySelector('canvas');
+            if (!canvas) return;
+            canvas.toBlob(async blob => {
+                await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                alert('QR copied to clipboard!');
+            });
+        });
+        openBtn.addEventListener('click', () => {
+            const canvas = qrContainer.querySelector('canvas');
+            if (!canvas) return;
+            const url = canvas.toDataURL('image/png');
+            window.open(url, '_blank');
+        });
+
+        // --- Premium QR modal ---
+        const premiumBtn = document.getElementById('premiumQRBtn');
+        const modal = document.getElementById('logoModal');
+        const confirmBtn = document.getElementById('confirmLogoBtn');
+        const logoInput = document.getElementById('logoUpload');
+
+        premiumBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+        modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+        confirmBtn.addEventListener('click', () => {
+            const file = logoInput.files[0];
+            if (!file) return alert('Please upload your logo first.');
+            const reader = new FileReader();
+            reader.onload = e => {
+                generatePremiumQR(e.target.result);
+                modal.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function generatePremiumQR(logoData) {
+            const text = qrText.value.trim();
+            if (!text) { alert('Enter text or URL first'); return; }
+            const size = parseInt(qrSize.value) || 250;
+            const color = qrColor.value || '#0d1b2a';
+
+            const qr = new QRious({ value: text, size: size, level: 'H', background: 'white', foreground: color });
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.height = size;
+
+            ctx.fillStyle = 'white'; ctx.fillRect(0, 0, size, size);
+            ctx.drawImage(qr.canvas, 0, 0, size, size);
+
+            const logo = new Image();
+            logo.src = logoData;
+            logo.onload = () => {
+                const logoSize = size * 0.25;
+                const x = (size - logoSize) / 2, y = (size - logoSize) / 2;
+
+                ctx.beginPath();
+                ctx.arc(size / 2, size / 2, logoSize / 2 + 8, 0, 2 * Math.PI);
+                ctx.fillStyle = 'white'; ctx.fill();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(size / 2, size / 2, logoSize / 2, 0, 2 * Math.PI); ctx.clip();
+                ctx.drawImage(logo, x, y, logoSize, logoSize);
+                ctx.restore();
+
+                qrContainer.innerHTML = ''; qrContainer.appendChild(canvas);
+                qrContainer.classList.add('visible');
+                downloadBtn.style.display = 'inline-block'; copyBtn.style.display = 'inline-block'; openBtn.style.display = 'inline-block';
+                status.textContent = 'Premium QR ready';
+            };
+        }
+
+        // --- Mobile toggle ---
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('nav');
+        navToggle.addEventListener('click', () => { nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex'; });
+    </script>
+
+</body>
+
+</html>

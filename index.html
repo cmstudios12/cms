@@ -183,6 +183,8 @@
       text-align: center;
       overflow: hidden;
       padding-top: 84px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .hero-overlay {
@@ -196,7 +198,6 @@
       z-index: -2;
       transition: background-image 0.5s ease;
       opacity: 1;
-      /* fully visible */
     }
 
     .hero-dark-overlay {
@@ -206,7 +207,6 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.4);
-      /* adjust darkness */
       z-index: -1;
     }
 
@@ -214,22 +214,28 @@
       font-size: 3rem;
       font-weight: 800;
       margin-bottom: 20px;
+      line-height: 1.2;
     }
 
-
+    /* Welcome text */
     #welcome-text {
       font-size: 2.5rem;
       color: #ff4d6d;
-      white-space: nowrap;
+      white-space: normal;
+      /* allow wrapping on mobile */
       display: inline-block;
+      max-width: 90%;
     }
 
     #welcome-text::after {
       content: '"Transforming Ideas into Digital Experiences"';
       display: inline-block;
       margin-left: 2px;
+      white-space: normal;
+      /* allow wrapping */
     }
 
+    /* Blinking animation if needed */
     @keyframes blink {
 
       0%,
@@ -242,8 +248,42 @@
       }
     }
 
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 992px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
 
-    
+      #welcome-text {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding-top: 60px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .hero h2 {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+      }
+
+      #welcome-text {
+        font-size: 1.3rem;
+      }
+
+      #welcome-text::after {
+        display: block;
+        margin-left: 0;
+        margin-top: 6px;
+      }
+    }
+
+
+
     #backToTop {
       display: none;
       /* Hidden by default */
@@ -1249,7 +1289,7 @@
 
   <script>
 
- 
+
     // Get the button
     const backToTopButton = document.getElementById("backToTop");
 
@@ -1582,7 +1622,7 @@
     hero.style.backgroundImage = `url(${heroImages[current]})`;
     hero.style.transition = 'background-image 0s ease';
 
-    
+
 
 
 

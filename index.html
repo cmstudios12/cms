@@ -216,10 +216,6 @@
       margin-bottom: 20px;
     }
 
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
 
     #welcome-text {
       font-size: 2.5rem;
@@ -229,10 +225,9 @@
     }
 
     #welcome-text::after {
-      content: '|';
+      content: '"Transforming Ideas into Digital Experiences"';
       display: inline-block;
       margin-left: 2px;
-      animation: blink 0.7s infinite;
     }
 
     @keyframes blink {
@@ -248,78 +243,7 @@
     }
 
 
-    .cursor-circle {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
-      font-size: 14px;
-      font-weight: 600;
-      text-align: center;
-      color: #fff;
-      opacity: 0.7;
-      transition: transform 0.05s ease;
-      z-index: 10;
-    }
-
-
-    /* Cursor circle exactly like your original */
-    .cursor-circle {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
-      font-size: 14px;
-      opacity: 0.7;
-      transition: transform 0.05s ease;
-      z-index: 10;
-    }
-
-
-    #whatsappButton {
-      position: fixed;
-      bottom: 40px;
-      /* Adjust distance from bottom */
-      left: 30px;
-      /* Stick to left side */
-      z-index: 1000;
-      background-color: #25D366;
-      /* WhatsApp green */
-      color: #fff;
-      font-size: 1.5rem;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-    }
-
-    #whatsappButton:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    }
-
-
+    
     #backToTop {
       display: none;
       /* Hidden by default */
@@ -1142,11 +1066,6 @@
     </ul>
   </div>
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/27818401398" target="_blank" id="whatsappButton" title="Chat with us">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
   <div class="navbar-wrapper">
     <div class="navbar">
       <a href="https://wa.me/27818401398" target="_blank" class="navbar-link"><i class="fa-brands fa-whatsapp"></i></a>
@@ -1178,8 +1097,6 @@
   <section class="hero" id="home">
     <div class="hero-content">
       <h2 id="welcome-text"></h2>
-      <p>Creative Media Studios – Where design meets innovation.</p>
-      <a href="services.html" class="btn">Explore Services</a>
     </div>
 
     <!-- Dark overlay for readability -->
@@ -1189,7 +1106,7 @@
     <div class="hero-overlay"></div>
 
     <!-- Cursor circle -->
-    <div class="cursor-circle">Drag to move</div>
+    <div class="cursor-circle"></div>
   </section>
 
 
@@ -1332,62 +1249,7 @@
 
   <script>
 
-    const messages = [
-      "Welcome to Creative Media Studios",
-      "We Bring Your Ideas To Life",
-      "Where Design Meets Innovation",
-      "Crafting Digital Experiences That Inspire",
-      "Turning Your Vision Into Reality"
-    ];
-
-    const welcomeElement = document.getElementById('welcome-text');
-    let msgIndex = 0;
-    let charIndex = 0;
-    let typingSpeed = 100;
-    let deletingSpeed = 50;
-    let pauseTime = 1500;
-
-    function typeLoop() {
-      const currentMessage = messages[msgIndex];
-
-      if (charIndex < currentMessage.length) {
-        // Type
-        welcomeElement.textContent = currentMessage.substring(0, charIndex + 1);
-        charIndex++;
-        setTimeout(typeLoop, typingSpeed);
-      } else {
-        // Pause before deleting
-        setTimeout(() => {
-          deleteLoop();
-        }, pauseTime);
-      }
-    }
-
-    function deleteLoop() {
-      const currentMessage = messages[msgIndex];
-
-      if (charIndex > 0) {
-        // Delete
-        welcomeElement.textContent = currentMessage.substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(deleteLoop, deletingSpeed);
-      } else {
-        // Next message
-        msgIndex = (msgIndex + 1) % messages.length;
-        setTimeout(typeLoop, typingSpeed);
-      }
-    }
-
-    // Start on page load
-    window.addEventListener('load', typeLoop);
-
-
-    // Initial state
-    whatsappButton.style.opacity = 0;
-    whatsappButton.style.transform = 'translateY(50px)';
-    whatsappButton.style.transition = 'all 0.5s ease';
-
-
+ 
     // Get the button
     const backToTopButton = document.getElementById("backToTop");
 
@@ -1712,65 +1574,15 @@
     // Hero slideshow with drag
     const hero = document.querySelector('.hero');
     const heroImages = [
-      'web.jpg',
-      'graphic.jpg',
-      'digital_m.jpg',
-      'photography.jpg',
-      'video.jpg',
-      'branding.jpg'
+      'web.jpg'
     ];
     let current = 0;
 
     // Initial background
     hero.style.backgroundImage = `url(${heroImages[current]})`;
-    hero.style.transition = 'background-image 0.5s ease, opacity 0.3s ease';
+    hero.style.transition = 'background-image 0s ease';
 
-    // Cursor circle
-    const cursorCircle = document.querySelector('.cursor-circle');
-    let isDragging = false;
-    let startX = 0;
-
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      cursorCircle.style.transform = `translate(${x}px, ${y}px)`;
-    });
-
-    // Drag start
-    hero.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      hero.style.opacity = 0.6; // decrease opacity while dragging
-    });
-    hero.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      startX = e.touches[0].clientX;
-      hero.style.opacity = 0.6;
-    });
-
-    // Drag end
-    function endDrag(e) {
-      if (!isDragging) return;
-      let endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
-      const diff = endX - startX;
-
-      if (diff > 30) {
-        // drag right -> previous image
-        current = (current - 1 + heroImages.length) % heroImages.length;
-      } else if (diff < -30) {
-        // drag left -> next image
-        current = (current + 1) % heroImages.length;
-      }
-      hero.style.backgroundImage = `url(${heroImages[current]})`;
-      hero.style.opacity = 1; // reset opacity
-      isDragging = false;
-    }
-
-    hero.addEventListener('mouseup', endDrag);
-    hero.addEventListener('mouseleave', () => { if (isDragging) hero.style.opacity = 1; isDragging = false; });
-    hero.addEventListener('touchend', endDrag);
-    hero.addEventListener('touchcancel', () => { hero.style.opacity = 1; isDragging = false; });
+    
 
 
 

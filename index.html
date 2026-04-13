@@ -1,1633 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creative Media Studios</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CMStudio - Creative Media Solutions</title>
-  <meta name="description"
-    content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
-  <meta name="keywords" content="CMStudio, creative media, web design, branding, digital solutions, South Africa">
-  <meta name="author" content="CMStudio">
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMSTUDIO Photography | Coming Soon</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="google.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Open Graph for social media -->
-  <meta property="og:title" content="CMStudio - Creative Media Solutions">
-  <meta property="og:description"
-    content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
-  <meta property="og:image" content="google.png">
-  <meta property="og:url" content="https://www.cmstudio.online">
-  <meta property="og:type" content="website">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CMStudio - Creative Media Solutions">
-  <meta name="twitter:description"
-    content="CMStudio is a creative media studio offering web design, branding, and digital solutions in South Africa.">
-  <meta name="twitter:image" content="google.png">
-  <!-- Google structured data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "CMStudio",
-    "url": "https://www.cmstudio.online",
-    "logo": "https://www.cmstudio.online/google.png",
-    "sameAs": [
-      "https://www.facebook.com/CMStudio Media",
-      "https://www.instagram.com/CMStudio",
-      "https://www.linkedin.com/company/CMStudio"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+27 81 840 1398",
-      "contactType": "customer service"
+body {
+    background: #0a0a0a;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Background glow */
+body::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Main container */
+.container {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    z-index: 2;
+}
+
+/* Logo */
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Heading */
+h1 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Subtext */
+p {
+    font-size: 16px;
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+/* Loader animation */
+.loader {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.loader span {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+}
+
+.loader span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.loader span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
     }
-  }
-  </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background: #f5f6fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    /* HEADER */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #0d1b2a;
-      color: #fff;
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    header h1 {
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: #fff;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      color: #fff;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #ff4d6d;
-    }
-
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 1;
-      animation: bubble-float 1s ease-out forwards;
-      z-index: 9999;
-      /* ensure they appear above everything */
-    }
-
-    @keyframes bubble-float {
-      0% {
-        transform: translate(0, 0) scale(1);
+    40% {
+        transform: scale(1);
         opacity: 1;
-      }
-
-      100% {
-        transform: translate(calc(var(--x) * 1px), calc(var(--y) * -1px)) scale(0.7);
-        opacity: 0;
-      }
-    }
-
-
-    /* mobile toggle */
-    .nav-toggle {
-      display: none;
-      background: transparent;
-      border: 0;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 72px;
-      left: 14px;
-      right: 14px;
-      background: #0d1b2a;
-      padding: 18px;
-      border-radius: 12px;
-      z-index: 1050;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
-    }
-
-    .mobile-nav.open {
-      display: block;
-    }
-
-    .mobile-nav ul {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .mobile-nav a {
-      color: #fff;
-      font-weight: 700;
-      padding: 8px 6px;
-      display: block;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
-      overflow: hidden;
-      padding-top: 84px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      z-index: -2;
-      transition: background-image 0.5s ease;
-      opacity: 1;
-    }
-
-    .hero-dark-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: -1;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    /* Welcome text */
-    #welcome-text {
-      font-size: 2.5rem;
-      color: #ff4d6d;
-      white-space: normal;
-      /* allow wrapping on mobile */
-      display: inline-block;
-      max-width: 90%;
-    }
-
-    #welcome-text::after {
-      content: '"Transforming Ideas into Digital Experiences"';
-      display: inline-block;
-      margin-left: 2px;
-      white-space: normal;
-      /* allow wrapping */
-    }
-
-    /* Blinking animation if needed */
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 1;
-      }
-    }
-
-    /* --- MOBILE RESPONSIVE --- */
-    @media (max-width: 992px) {
-      .hero h2 {
-        font-size: 2.2rem;
-      }
-
-      #welcome-text {
-        font-size: 1.8rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .hero {
-        padding-top: 60px;
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .hero h2 {
-        font-size: 1.8rem;
-        margin-bottom: 12px;
-      }
-
-      #welcome-text {
-        font-size: 1.3rem;
-      }
-
-      #welcome-text::after {
-        display: block;
-        margin-left: 0;
-        margin-top: 6px;
-      }
-    }
-
-
-
-    #backToTop {
-      display: none;
-      /* Hidden by default */
-      position: fixed;
-      bottom: 65px;
-      right: 40px;
-      z-index: 1000;
-      background: #ff4d6d;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    #backToTop:hover {
-      background: #ff2d55;
-      transform: translateY(-3px);
-    }
-
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 1;
-      animation: bubble-float 1s ease-out forwards;
-    }
-
-    @keyframes bubble-float {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(calc(var(--x) * 1px), calc(var(--y) * -1px)) scale(0.6);
-        opacity: 0;
-      }
-    }
-
-
-
-    .btn {
-      background: #ff4d6d;
-      color: #fff;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: #e8415d;
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 80px 60px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section h3 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      font-weight: 800;
-      color: #0d1b2a;
-    }
-
-    #admin-spotlight {
-      position: relative;
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 60px auto;
-      overflow: hidden;
-    }
-
-    #admin-spotlight h3 {
-      text-align: center;
-      font-size: 2.4rem;
-      margin-bottom: 50px;
-      color: #0d1b2a;
-      font-weight: 800;
-    }
-
-    .admin-spotlight {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .admin-image {
-      flex: 1;
-      min-width: 280px;
-      max-width: 400px;
-      border-radius: 15px;
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      transition: transform 0.5s;
-    }
-
-    .admin-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 15px;
-    }
-
-    .admin-image:hover {
-      transform: scale(1.05);
-    }
-
-    .admin-text {
-      flex: 2;
-      min-width: 300px;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #0d1b2a;
-      z-index: 2;
-    }
-
-    .admin-text h4 {
-      font-size: 1.6rem;
-      color: #ff4d6d;
-      margin-bottom: 15px;
-    }
-
-    #admin-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      /* behind content */
-      pointer-events: none;
-    }
-
-    /* Canvas covers the spotlight */
-    #tech-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    @media (max-width:768px) {
-      .admin-spotlight {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    .interactive-section {
-      position: relative;
-      width: 100%;
-      min-height: 500px;
-      overflow: hidden;
-      background: #0d1b2a;
-      color: #fff;
-    }
-
-    #techLines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
-    .interactive-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 50px;
-      padding: 60px;
-    }
-
-    .video-box video {
-      width: 400px;
-      max-width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .counters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
-
-    .counter h3 {
-      font-size: 3rem;
-      color: #ff4d6d;
-    }
-
-    .counter p {
-      font-size: 1.1rem;
-      margin-top: 5px;
-    }
-
-    #spotlight h3 {
-      text-align: center;
-      font-size: 2.2rem;
-      color: #0d1b2a;
-      margin-bottom: 40px;
-      font-weight: 800;
-    }
-
-    .spotlight-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 450px;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-
-    .tech-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    #tech-canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .spotlight-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-    }
-
-    .spotlight-image {
-      flex: 1;
-      max-width: 400px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      transition: transform 0.5s;
-    }
-
-    .spotlight-image img {
-      width: 100%;
-      display: block;
-      border-radius: 15px;
-    }
-
-    .spotlight-text {
-      flex: 2;
-      min-width: 300px;
-      color: #0d1b2a;
-      font-size: 1.1rem;
-      line-height: 1.7;
-    }
-
-    @media (max-width:768px) {
-      .spotlight-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .spotlight-text {
-        order: 2;
-      }
-
-      .spotlight-image {
-        order: 1;
-      }
-    }
-
-    /* TESTIMONIALS */
-    .testimonials {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 180px;
-      position: relative;
-    }
-
-    .testimonial {
-      display: none;
-      max-width: 700px;
-      text-align: center;
-      background: #fff;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: opacity 0.6s;
-    }
-
-    .testimonial.active {
-      display: block;
-    }
-
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-
-    .testimonial h5 {
-      color: #ff4d6d;
-    }
-
-    /* Modal Background */
-    .cta-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 5000;
-      padding: 20px;
-    }
-
-    /* Modal Content */
-    .cta-modal-content {
-      background: #fff;
-      padding: 40px;
-      border-radius: 15px;
-      max-width: 500px;
-      width: 100%;
-      position: relative;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    .cta-modal-content h4 {
-      color: #ff4d6d;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-
-    .cta-modal-content label {
-      display: block;
-      text-align: left;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    .cta-modal-content input,
-    .cta-modal-content textarea {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-    }
-
-    .cta-modal-content textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #ff4d6d;
-      font-weight: bold;
-    }
-
-    .btn-cta {
-      background-color: #ff4d6d;
-      color: #fff;
-      border: none;
-      padding: 12px 35px;
-      border-radius: 50px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-cta:hover {
-      background-color: #ff1a3c;
-    }
-
-    #trusted {
-      background: #f9fafc;
-      padding: 60px 20px;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    #trusted h3 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-      font-weight: 700;
-      color: #0d1b2a;
-    }
-
-    .trusted-logos {
-      display: flex;
-      gap: 50px;
-      align-items: center;
-      width: max-content;
-      animation: scrollLeft 30s linear infinite;
-    }
-
-    .trusted-logos img {
-      max-height: 60px;
-      object-fit: contain;
-      filter: grayscale(100%);
-      transition: filter 0.3s, transform 0.3s;
-    }
-
-    .trusted-logos img:hover {
-      filter: grayscale(0%);
-      transform: scale(1.05);
-    }
-
-    @keyframes scrollLeft {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 1024px) {
-      .trusted-logos {
-        gap: 30px;
-      }
-
-      #trusted h3 {
-        font-size: 1.6rem;
-        margin-bottom: 30px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .trusted-logos {
-        gap: 20px;
-      }
-
-      #trusted h3 {
-        font-size: 1.4rem;
-        margin-bottom: 20px;
-      }
-    }
-
-
-
-    #contact {
-      background: #0d1b2a;
-      color: #fff;
-      padding: 80px 20px;
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      align-items: center;
-    }
-
-    .footer-info p {
-      margin: 5px 0;
-      color: #fff;
-    }
-
-    .footer-info a {
-      color: #ff4d6d;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-info a:hover {
-      color: #ff1a57;
-    }
-
-    .footer-links {
-      margin: 10px 0;
-    }
-
-    .footer-links a {
-      color: #ff4d6d;
-      text-decoration: none;
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover {
-      color: #ff1a57;
-    }
-
-    .footer-social a {
-      margin: 0 15px;
-      font-size: 1.5rem;
-      color: #ff4d6d;
-      transition: transform 0.3s, color 0.3s;
-    }
-
-    .footer-social a:hover {
-      transform: scale(1.2);
-      color: #ff1a57;
-    }
-
-
-    /* RESPONSIVE ADJUSTMENTS */
-    @media (max-width:980px) {
-      header {
-        padding: 14px 30px;
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
-      nav ul {
-        display: none;
-      }
-
-      .hero h2 {
-        font-size: 2.4rem;
-      }
-
-      .section {
-        padding: 56px 28px;
-      }
-
-      .about {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width:520px) {
-      .hero {
-        padding-top: 96px;
-      }
-
-      .hero h2 {
-        font-size: 1.85rem;
-      }
-
-      .services {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 40px 18px;
-      }
-
-      header h1 {
-        font-size: 1.05rem;
-      }
-    }
-
-    /* Floating Navbar */
-    .navbar-wrapper {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 150px;
-      height: 150px;
-      z-index: 999;
-    }
-
-    .navbar {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .navbar-link {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 45px;
-      height: 45px;
-      background: #ff4b5c;
-      backdrop-filter: blur(6px);
-      border: 2px solid #ffffff30;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      font-size: 18px;
-      transition: all 0.5s ease-in-out;
-      opacity: 0;
-      pointer-events: none;
-      transform: translate(-50%, -50%) scale(0.5);
-      text-decoration: none;
-    }
-
-    .navbar-link:hover {
-      background: #ff4b5d56;
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    .navbar-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: #ff4b5c;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 22px;
-      cursor: pointer;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-      z-index: 10;
-    }
-
-    .navbar-btn:hover {
-      transform: translate(-50%, -50%) scale(1.05);
-    }
-
-    /* Active state */
-    .navbar-wrapper.active .navbar-link {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1) translate(-50%, -50%);
-    }
-
-    /* Circular distribution */
-    .navbar-wrapper.active .navbar-link:nth-child(1) {
-      transform: translate(-50%, -50%) translateY(-70px);
-      transition-delay: 0.05s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(2) {
-      transform: translate(-50%, -50%) translate(50px, -50px);
-      transition-delay: 0.1s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(3) {
-      transform: translate(-50%, -50%) translateX(70px);
-      transition-delay: 0.15s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(4) {
-      transform: translate(-50%, -50%) translate(50px, 50px);
-      transition-delay: 0.2s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(5) {
-      transform: translate(-50%, -50%) translateY(70px);
-      transition-delay: 0.25s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(6) {
-      transform: translate(-50%, -50%) translate(-50px, 50px);
-      transition-delay: 0.3s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(7) {
-      transform: translate(-50%, -50%) translateX(-70px);
-      transition-delay: 0.35s;
-    }
-
-    .navbar-wrapper.active .navbar-link:nth-child(8) {
-      transform: translate(-50%, -50%) translate(-50px, -50px);
-      transition-delay: 0.4s;
-    }
-
-    /* Rotate plus into X */
-    .navbar-wrapper.active .navbar-btn {
-      transform: translate(-50%, -50%) rotate(135deg);
-    }
-
-    /* Responsive for small screens */
-    @media (max-width: 600px) {
-      .navbar-wrapper {
-        width: 120px;
-        height: 120px;
-        bottom: 15px;
-        left: 15px;
-      }
-
-      .navbar-link {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-      }
-
-      .navbar-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(1) {
-        transform: translate(-50%, -50%) translateY(-60px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(2) {
-        transform: translate(-50%, -50%) translate(40px, -40px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(3) {
-        transform: translate(-50%, -50%) translateX(60px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(4) {
-        transform: translate(-50%, -50%) translate(40px, 40px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(5) {
-        transform: translate(-50%, -50%) translateY(60px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(6) {
-        transform: translate(-50%, -50%) translate(-40px, 40px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(7) {
-        transform: translate(-50%, -50%) translateX(-60px);
-      }
-
-      .navbar-wrapper.active .navbar-link:nth-child(8) {
-        transform: translate(-50%, -50%) translate(-40px, -40px);
-      }
     }
-  </style>
+}
+
+/* Contact section */
+.contact {
+    margin-top: 20px;
+}
+
+.contact a {
+    display: inline-block;
+    margin: 8px;
+    padding: 10px 18px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.contact a:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 20px;
+    font-size: 13px;
+    color: #777;
+}
+
+/* Mobile */
+@media(max-width: 600px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .contact a {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <!-- Logo -->
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="CMStudio Logo" style="height:50px;">
-    </a>
+<div class="container">
+    
+    <!-- Replace with your logo image if you want -->
+    <div class="logo">CMSTUDIO</div>
 
-    <!-- Navigation -->
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="tech-services.html">Tech Service</a></li>
-        <li><a href="business.html" class="active">Business Plans</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="qr.html" style="background-color: #ff4d6d; border-radius: 5px; padding: 8px;">QR Code Generator</a>
-        </li>
-      </ul>
-    </nav>
+    <h1>Website Coming Soon</h1>
 
-    <!-- Mobile toggle button -->
-    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
-      <i class="fas fa-bars"></i>
-    </button>
-  </header>
+    <p>
+        We’re currently building something beautiful and powerful for you.  
+        Stay tuned.  CMSTUDIO Photography is launching soon.
+    </p>
 
-
-  <!-- mobile nav (hidden on desktop) -->
-  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="tech-services.html">Tech Service</a></li>
-      <li><a href="business.html" class="active">Business Plans</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="qr.html" style="background-color: #ff4d6d; border-radius: 5px; padding: 8px;">QR Code Generator</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="navbar-wrapper">
-    <div class="navbar">
-      <a href="https://wa.me/27818401398" target="_blank" class="navbar-link"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" target="_blank" class="navbar-link"><i
-          class="fa-brands fa-facebook"></i></a>
-      <a href="mailto:cmstudiosza@gmail.com" class="navbar-link"><i class="fas fa-envelope"></i></a>
-      <a href="tel:+27818401398" class="navbar-link"><i class="fa-solid fa-square-phone"></i></a>
-      <a href="https://discord.gg/YOUR_SERVER" target="_blank" class="navbar-link"><i
-          class="fa-brands fa-discord"></i></a>
-      <a href="https://www.instagram.com/@n.t.a.n.d.o.e" target="_blank" class="navbar-link">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.threads.net/@n.t.a.n.d.o.e" target="_blank" class="navbar-link">
-        <i class="fab fa-threads"></i>
-      </a>
-      <a href="https://www.tiktok.com/@n.t.a.n.d.o0" target="_blank" class="navbar-link"><i
-          class="fab fa-tiktok"></i></a>
-    </div>
-    <div class="navbar-btn">
-      <i class="fas fa-plus"></i>
-    </div>
-  </div>
-
-
-  <!-- Back to Top Button -->
-  <button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
-
-
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h2 id="welcome-text"></h2>
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
-    <!-- Dark overlay for readability -->
-    <div class="hero-dark-overlay"></div>
-
-    <!-- Background image overlay -->
-    <div class="hero-overlay"></div>
-
-    <!-- Cursor circle -->
-    <div class="cursor-circle"></div>
-  </section>
-
-
-
-
-  <section class="interactive-section">
-    <canvas id="techLines"></canvas>
-    <div class="interactive-content">
-      <div class="video-box">
-        <video src="clip.mp4" autoplay muted loop></video>
-      </div>
-      <div class="counters">
-        <div class="counter">
-          <h3 id="projects">0</h3>
-          <p>Projects Completed</p>
-        </div>
-        <div class="counter">
-          <h3 id="clients">0</h3>
-          <p>Happy Clients</p>
-        </div>
-        <div class="counter">
-          <h3 id="years">0</h3>
-          <p>Years of Experience</p>
-        </div>
-        <div class="counter">
-          <h3 id="awards">0</h3>
-          <p>Awards Won</p>
-        </div>
-      </div>
+    <div class="contact">
+        <a href="tel:+27818401398">Call Us</a>
+        <a href="mailto:cmstudiosza@gmail.com">Email</a>
+        <a href="https://wa.me/27818401398" target="_blank">WhatsApp</a>
     </div>
-  </section>
 
-  <!-- ADMIN SPOTLIGHT WITH TECH LINES -->
-  <section class="section" id="admin-spotlight">
-    <canvas id="tech-canvas"></canvas>
-    <h3>About CMStudio</h3>
-    <div class="admin-spotlight">
-      <canvas id="tech-canvas"></canvas>
-      <div class="admin-image">
-        <img src="nomsa.png" alt="Admin Support" />
-      </div>
-      <div class="admin-text">
-        <h4>Who We Are</h4>
-        <p>Creative Media Studios is a passionate digital agency transforming ideas into impactful experiences. Our team
-          delivers cutting-edge solutions that drive growth and creativity. Innovation, collaboration, and excellence
-          are at the heart of everything we do.</p>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-  <script src="https://elfsightcdn.com/platform.js" async></script>
-  <div class="elfsight-app-efc96565-a755-431b-a8d1-3584f7110896" data-elfsight-app-lazy></div>
+<footer>
+    © 2026 CMSTUDIO Photography. All rights reserved.
+</footer>
 
-
-  <!-- CTA Section -->
-  <section class="section cta-section">
-    <div class="cta-container">
-      <h3>Ready to Start Your Project?</h3>
-      <p>Let’s create something amazing together. Talk to our team today!</p>
-      <button id="openCtaModal" class="btn-cta">Get in Touch</button>
-    </div>
-  </section>
-
-  <!-- WhatsApp Modal -->
-  <div id="ctaModal" class="cta-modal">
-    <div class="cta-modal-content">
-      <span class="close-modal" id="closeCtaModal">&times;</span>
-      <h4>Contact Us via WhatsApp</h4>
-      <form id="whatsappForm">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" required placeholder="Enter your name">
-
-        <label for="phone">WhatsApp Number</label>
-        <input type="tel" id="phone" name="phone" required placeholder="+27 123 456 7890">
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required placeholder="Type your message"></textarea>
-
-        <button type="submit" class="btn-cta">Send via WhatsApp</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- TRUSTED BY -->
-  <section class="section" id="trusted">
-    <h3>Trusted By</h3>
-    <div class="trusted-logos">
-      <img src="edwaleni.png" alt="Client 1">
-      <img src="major.jpg" alt="Client 2">
-      <img src="mkson.png" alt="Client 3">
-      <img src="eugene.png" alt="Client 4">
-      <img src="epign.png" alt="Client 5">
-      <img src="gogm.png" alt="Client 6">
-      <img src="gagm.png" alt="Client 7">
-      <img src="noko.png" alt="Client 8">
-      <img src="sfiso.png" alt="Client 9">
-      <img src="n_logo.png" alt="Client 10">
-      <img src="gat.png" alt="Client 11">
-      <img src="cmstudiol.png" alt="Client 12">
-      <img src="buildingh.png" alt="Client 13">
-      <img src="bbm.png" alt="Client 14">
-      <img src="bethel.png" alt="Client 15">
-      <img src="cmsn.png" alt="Client 16">
-      <img src="eagles.png" alt="Client 17">
-      <img src="kgs.png" alt="Client 18">
-    </div>
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    <div class="footer-container">
-      <!-- Company Info -->
-      <div class="footer-info">
-        <p>© 2025 Creative Media Studios. All Rights Reserved.</p>
-        <p>South Africa, Mpumalanga, Mbombela | <a href="mailto:info@cmstudio.com">info@cmstudio.com</a></p>
-      </div>
-
-      <!-- Footer Links -->
-      <div class="footer-links">
-        <a href="terms.html">Terms & Conditions</a> |
-        <a href="privacy.html">Privacy Policy</a>
-      </div>
-
-      <!-- Social Media -->
-      <div class="footer-social">
-        <a href="https://www.facebook.com/share/1EvE83peGC/?mibextid=wwXIfr" aria-label="Facebook"><i
-            class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/@n.t.a.n.d.o.e" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://wa.me/27818401398" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-
-  <script>
-
-
-    // Get the button
-    const backToTopButton = document.getElementById("backToTop");
-
-    // Show button when scrolling down 200px
-    window.onscroll = function () {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        backToTopButton.style.display = "block";
-      } else {
-        backToTopButton.style.display = "none";
-      }
-    };
-
-    const backToTop = document.getElementById('backToTop');
-
-    backToTop.addEventListener('click', (e) => {
-      for (let i = 0; i < 5; i++) { // create 5 bubbles per click
-        const bubble = document.createElement('span');
-        bubble.classList.add('bubble');
-
-        // Button center
-        const rect = backToTop.getBoundingClientRect();
-        bubble.style.left = (rect.left + rect.width / 2) + 'px';
-        bubble.style.top = (rect.top + rect.height / 2) + 'px';
-
-        // Random horizontal and vertical offset
-        bubble.style.setProperty('--x', Math.random() * 60 - 30); // left/right
-        bubble.style.setProperty('--y', Math.random() * 80 + 40); // upward distance
-
-        // Random size
-        const size = Math.random() * 12 + 12; // 12px ~ 24px
-        bubble.style.width = size + 'px';
-        bubble.style.height = size + 'px';
-
-        // Color matches button
-        bubble.style.background = '#ff4d6d';
-
-        document.body.appendChild(bubble);
-
-        // Remove bubble after animation
-        setTimeout(() => {
-          bubble.remove();
-        }, 1000); // match animation duration
-      }
-    });
-
-
-
-    document.querySelectorAll('nav ul li a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const rect = link.getBoundingClientRect();
-
-        for (let i = 0; i < 5; i++) { // 5 bubbles per click
-          const bubble = document.createElement('span');
-          bubble.classList.add('bubble');
-
-          // Set initial position (center of link)
-          bubble.style.left = (rect.left + rect.width / 2) + 'px';
-          bubble.style.top = (rect.top + rect.height / 2) + 'px';
-
-          // Random direction
-          bubble.style.setProperty('--x', Math.random() * 60 - 30); // left/right
-          bubble.style.setProperty('--y', Math.random() * 80 + 40); // upward
-
-          // Random size (bigger bubbles)
-          const size = Math.random() * 20 + 20; // 20px ~ 40px
-          bubble.style.width = size + 'px';
-          bubble.style.height = size + 'px';
-
-          // Match nav hover color
-          bubble.style.background = '#ff4d6d';
-
-          document.body.appendChild(bubble);
-
-          // Remove after animation
-          setTimeout(() => bubble.remove(), 1000);
-        }
-      });
-    });
-
-    const canvas = document.getElementById('techLines');
-    const ctx = canvas.getContext('2d');
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = document.querySelector('.interactive-section').offsetHeight;
-
-    const numPoints = 50;
-    const points = [];
-    const maxConnection = 120; // max distance to draw lines
-    const cursor = { x: -1000, y: -1000, radius: 150 };
-
-    // Track cursor
-    window.addEventListener('mousemove', e => {
-      cursor.x = e.clientX;
-      cursor.y = e.clientY;
-    });
-
-    // Initialize points
-    for (let i = 0; i < numPoints; i++) {
-      points.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        dx: (Math.random() - 0.5) * 1.2,
-        dy: (Math.random() - 0.5) * 1.2
-      });
-    }
-
-    // Animate network
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      // Move points
-      for (let p of points) {
-        p.x += p.dx;
-        p.y += p.dy;
-
-        // Bounce off edges
-        if (p.x < 0 || p.x > width) p.dx *= -1;
-        if (p.y < 0 || p.y > height) p.dy *= -1;
-
-        // Avoid cursor
-        const distX = p.x - cursor.x;
-        const distY = p.y - cursor.y;
-        const dist = Math.sqrt(distX * distX + distY * distY);
-        if (dist < cursor.radius) {
-          const angle = Math.atan2(distY, distX);
-          const force = (cursor.radius - dist) * 0.2;
-          p.x += Math.cos(angle) * force;
-          p.y += Math.sin(angle) * force;
-        }
-
-        // Draw point
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,77,109,0.9)';
-        ctx.fill();
-      }
-
-      // Draw lines between close points
-      for (let i = 0; i < points.length; i++) {
-        for (let j = i + 1; j < points.length; j++) {
-          const dx = points[i].x - points[j].x;
-          const dy = points[i].y - points[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < maxConnection) {
-            ctx.beginPath();
-            ctx.moveTo(points[i].x, points[i].y);
-            ctx.lineTo(points[j].x, points[j].y);
-            ctx.strokeStyle = `rgba(255,77,109,${1 - distance / maxConnection})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Resize handling
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = document.querySelector('.interactive-section').offsetHeight;
-      points.length = 0;
-      for (let i = 0; i < numPoints; i++) {
-        points.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          dx: (Math.random() - 0.5) * 1.2,
-          dy: (Math.random() - 0.5) * 1.2
-        });
-      }
-    });
-
-
-    // Smooth scroll to top
-    backToTopButton.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // simple DOM helpers
-    const $ = (sel, ctx = document) => ctx.querySelector(sel);
-    const $$ = (sel, ctx = document) => Array.from((ctx || document).querySelectorAll(sel));
-
-    // Mobile nav toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    navToggle.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
-      // lock scroll when open
-      document.body.style.overflow = open ? 'hidden' : '';
-      // change icon
-      navToggle.innerHTML = open ? '<i class=\"fas fa-xmark\"></i>' : '<i class=\"fas fa-bars\"></i>';
-    });
-
-    // close mobile nav when clicking a link
-    $$('#mobile-nav a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        mobileNav.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        navToggle.innerHTML = '<i class=\"fas fa-bars\"></i>';
-      });
-    });
-
-    // Smooth scroll for in-page anchors
-    document.addEventListener('click', (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const href = a.getAttribute('href');
-      if (href === '#' || href === '') return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const topOffset = 72; // header height
-        const rect = target.getBoundingClientRect();
-        const offsetTop = window.pageYOffset + rect.top - topOffset;
-        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-      }
-    });
-
-    // Animated Counters
-    function animateCounter(id, end, duration) {
-      let obj = document.getElementById(id);
-      let start = 0;
-      let stepTime = Math.abs(Math.floor(duration / end));
-      let timer = setInterval(() => {
-        start += 1;
-        obj.textContent = start;
-        if (start >= end) clearInterval(timer);
-      }, stepTime);
-    }
-
-    animateCounter('projects', 2120, 2000);
-    animateCounter('clients', 1775, 2000);
-    animateCounter('years', 8, 2000);
-    animateCounter('awards', 2, 2000);
-
-
-    // Service "Learn more" toggles
-    $$('.service-toggle').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const card = e.target.closest('.service-card');
-        const expanded = card.classList.toggle('expanded');
-        e.target.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        // optional: scroll card into view on mobile when expanded
-        if (expanded && window.innerWidth < 640) {
-          setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
-        }
-      });
-    });
-
-    // close mobile nav if viewport changes to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 980 && mobileNav.classList.contains('open')) {
-        mobileNav.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        mobileNav.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
-      }
-    });
-
-    // optional: add small touch for portfolio items (tap shows overlay on touch devices)
-    $$('.portfolio-item').forEach(item => {
-      item.addEventListener('touchstart', () => {
-        $$('.portfolio-item .overlay').forEach(o => o.style.opacity = 0);
-        const overlay = item.querySelector('.overlay');
-        if (overlay) overlay.style.opacity = 1;
-        setTimeout(() => { if (overlay) overlay.style.opacity = ''; }, 1200);
-      });
-    });
-
-    // Modal Open & Close
-    const openModal = document.getElementById('openCtaModal');
-    const modal = document.getElementById('ctaModal');
-    const closeModal = document.getElementById('closeCtaModal');
-
-    openModal.addEventListener('click', () => {
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    });
-
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    });
-
-    // WhatsApp Form Submit
-    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if (name && phone && message) {
-        const waNumber = '27818401398'; // My WhatsApp number
-        const waLink = `https://wa.me/${waNumber}?text=Hi%2C%20my%20name%20is%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
-        window.open(waLink, '_blank');
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-        this.reset();
-      }
-
-    });
-
-    const wrapper = document.querySelector(".navbar-wrapper");
-    const btn = document.querySelector(".navbar-btn");
-    btn.addEventListener("click", () => wrapper.classList.toggle("active"));
-
-    // Hero slideshow with drag
-    const hero = document.querySelector('.hero');
-    const heroImages = [
-      'web.jpg'
-    ];
-    let current = 0;
-
-    // Initial background
-    hero.style.backgroundImage = `url(${heroImages[current]})`;
-    hero.style.transition = 'background-image 0s ease';
-
-
-
-
-
-  </script>
 </body>
-
 </html>
-

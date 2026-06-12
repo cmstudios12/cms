@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CMSTUDIO AUTH</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  color:#fff;
+}
+
+/* CARD */
+.card{
+  width:420px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:30px;
+}
+
+/* TABS */
+.tabs{
+  display:flex;
+  margin-bottom:20px;
+}
+
+.tabs button{
+  flex:1;
+  padding:10px;
+  background:none;
+  border:none;
+  color:#aaa;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+}
+
+.tabs button.active{
+  color:#fff;
+  border-bottom:2px solid #fff;
+}
+
+/* INPUTS */
+input{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#111;
+  color:#fff;
+}
+
+/* BUTTON */
+button.submit{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+  background:#fff;
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* LOADING */
+#loading{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+  font-size:18px;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#0f0;
+  color:#000;
+  padding:12px 18px;
+  border-radius:10px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="tabs">
+    <button id="loginTab" class="active" onclick="showLogin()">Login</button>
+    <button id="signupTab" onclick="showSignup()">Sign Up</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginBox">
+    <input id="loginEmail" placeholder="Email">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <button class="submit" onclick="login()">Login</button>
+  </div>
+
+  <!-- SIGNUP -->
+  <div id="signupBox" style="display:none;">
+    <input id="name" placeholder="Name">
+    <input id="surname" placeholder="Surname">
+    <input id="email" placeholder="Email">
+    <input id="phone" placeholder="Phone">
+    <input id="location" placeholder="Location">
+    <input id="password" type="password" placeholder="Password">
+
+    <button class="submit" onclick="signup()">Create Account</button>
+  </div>
+
+</div>
+
+<div id="loading">Loading...</div>
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* 🔥 SUPABASE INIT (PUT YOUR REAL KEYS HERE) */
+const supabaseUrl = "https://YOUR_PROJECT.supabase.co";
+const supabaseKey = "YOUR_ANON_KEY";
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+/* UI */
+function showLogin(){
+  document.getElementById("loginBox").style.display="block";
+  document.getElementById("signupBox").style.display="none";
+  document.getElementById("loginTab").classList.add("active");
+  document.getElementById("signupTab").classList.remove("active");
+}
+
+function showSignup(){
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("signupBox").style.display="block";
+  document.getElementById("signupTab").classList.add("active");
+  document.getElementById("loginTab").classList.remove("active");
+}
+
+/* LOADING */
+function setLoading(state){
+  document.getElementById("loading").style.display = state ? "flex":"none";
+}
+
+/* TOAST */
+function toast(msg,color="#0f0"){
+  const t=document.getElementById("toast");
+  t.innerText=msg;
+  t.style.background=color;
+  t.style.display="block";
+  setTimeout(()=>t.style.display="none",2500);
+}
+
+/* SIGNUP */
+async function signup(){
+
+  setLoading(true);
+
+  const email=document.getElementById("email").value;
+  const password=document.getElementById("password").value;
+  const name=document.getElementById("name").value;
+  const surname=document.getElementById("surname").value;
+  const phone=document.getElementById("phone").value;
+  const location=document.getElementById("location").value;
+
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password
+  });
+
+  if(error){
+    setLoading(false);
+    toast(error.message,"red");
+    return;
+  }
+
+  // SAVE PROFILE
+  await supabase.from("profiles").insert([
+    {
+      id: data.user.id,
+      name,
+      surname,
+      email,
+      phone,
+      location
+    }
+  ]);
+
+  setLoading(false);
+  toast("Successfully Registered ✔");
+  showLogin();
+}
+
+/* LOGIN */
+async function login(){
+
+  setLoading(true);
+
+  const email=document.getElementById("loginEmail").value;
+  const password=document.getElementById("loginPassword").value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if(error){
+    setLoading(false);
+    toast(error.message,"red");
+    return;
+  }
+
+  setLoading(false);
+  toast("Successfully Logged In ✔");
+
+  setTimeout(()=>{
+    window.location.href="index.html";
+  },1500);
+}
+
+</script>
+
+</body>
+</html>

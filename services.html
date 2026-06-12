@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMSTUDIO Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, .9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            z-index: 1000;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+        }
+
+        .logo p {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: #aaa;
+        }
+
+        /* =========================
+   HAMBURGER ICON
+========================= */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: 0.3s ease;
+        }
+
+        /* ANIMATION WHEN ACTIVE */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* =========================
+   MOBILE MENU
+========================= */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(18px);
+            padding: 100px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            transition: 0.4s ease;
+            z-index: 1500;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* SHOW MENU */
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding-top: 85px;
+                min-height: 130vh;
+            }
+        }
+
+        /* SHOW ONLY ON MOBILE */
+        @media (max-width: 900px) {
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover {
+            color: #aaa;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 8% 100px;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .9)),
+                url("services-banner.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-content span {
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+
+        .hero-content p {
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        /* SERVICES */
+
+        .section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: #888;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-top: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #111;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: .4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-content p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 50px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* WHY US */
+
+        .why-us {
+            padding: 100px 8%;
+            background: #080808;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            background: #111;
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            color: #aaa;
+        }
+
+        /* CTA */
+
+        .cta {
+            padding: 120px 8%;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: auto;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: linear-gradient(135deg, #0a0a0a, #000);
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-top: 1px solid #222;
+        }
+
+        footer h2 {
+            font-size: 2rem;
+            letter-spacing: 5px;
+        }
+
+        footer p {
+            color: #aaa;
+        }
+
+        .footer-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-box a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .footer-box a:hover {
+            color: white;
+        }
+
+        .footer-box a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .footer-box i {
+            font-size: 18px;
+        }
+
+        .bottom {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            background: #000;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px) {
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .cta h2 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            <h1>CMSTUDIO</h1>
+            <p>PHOTOGRAPHY</p>
+        </div>
+
+        <!-- HAMBURGER BUTTON -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="booking.html">Bookings</a>
+
+        </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="booking.html">Bookings</a></li>
+        </ul>
+
+    </nav>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span>Professional Photography Services</span>
+
+            <h1>Photography For Every Occasion.</h1>
+
+            <p>
+                From graduation shoots and portraits to weddings and corporate branding,
+                CMSTUDIO delivers premium photography experiences.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="section-title">
+            <span>Our Services</span>
+            <h2>What We Offer</h2>
+        </div>
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <img src="Grad_3.jpg">
+                <div class="service-content">
+                    <h3>Graduation Photography</h3>
+                    <p>Celebrate your achievement with professional graduation portraits.</p>
+                    <a href="booking.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="port.jpg">
+                <div class="service-content">
+                    <h3>Portrait Photography</h3>
+                    <p>Creative studio and outdoor portraits tailored to your style.</p>
+                    <a href="booking.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="Event.jpeg">
+                <div class="service-content">
+                    <h3>Events Coverage</h3>
+                    <p>Birthdays, conferences, church events and celebrations.</p>
+                    <a href="booking.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="wedding.jpg">
+                <div class="service-content">
+                    <h3>Wedding Photography</h3>
+                    <p>Capture every special moment of your wedding day beautifully.</p>
+                    <a href="booking.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="street2.jpg">
+                <div class="service-content">
+                    <h3>Street Photography</h3>
+                    <p>Urban and lifestyle photography with a creative artistic touch.</p>
+                    <a href="booking.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="branding.jpeg">
+                <div class="service-content">
+                    <h3>Corporate Branding</h3>
+                    <p>Professional content creation for brands and businesses.</p>
+                    <a href="booking.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="why-us">
+
+        <div class="section-title">
+            <span>Why Choose Us</span>
+            <h2>The CMSTUDIO Difference</h2>
+        </div>
+
+        <div class="features">
+
+            <div class="feature">
+                <h3>Professional Editing</h3>
+                <p>Every image is professionally edited and enhanced.</p>
+            </div>
+
+            <div class="feature">
+                <h3>High Resolution</h3>
+                <p>Receive crystal clear images ready for print and digital use.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Fast Delivery</h3>
+                <p>Quick turnaround without compromising quality.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Creative Direction</h3>
+                <p>Guidance on posing, styling and storytelling.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="cta">
+
+        <h2>Ready To Book Your Shoot?</h2>
+
+        <p>
+            Let's create something memorable together and capture your story.
+        </p>
+
+        <a href="booking.html" class="btn">Book A Session</a>
+
+    </section>
+
+    <footer>
+
+        <div>
+            <h2>CMSTUDIO</h2>
+            <p>Professional Photography Studio based in South Africa.</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <a href="mailto:cmstudiosza@gmail.com">cmstudiosza@gmail.com</a>
+            <a href="tel:+27818401398">+27 81 840 1398</a>
+        </div>
+
+        <div class="footer-box">
+            <h3>Social</h3>
+
+            <a href="https://www.instagram.com/ntando_ngceshe?igsh=MXM5b3BnOHVvbW5vNA%3D%3D&utm_source=qr">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+
+            <a href="https://www.facebook.com/share/1EMMqFwPrs/?mibextid=wwXIfr">
+                <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+
+            <a href="https://www.tiktok.com/@cmstudio.photogra?_r=1&_t=ZS-96zRUJvLFoX">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+        </div>
+
+    </footer>
+
+    <div class="bottom">
+        © 2026 CMSTUDIO Photography. All Rights Reserved.
+    </div>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        console.log("CMSTUDIO Services Page Loaded");
+        const hamburger = document.getElementById("hamburger");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        // toggle menu
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            mobileMenu.classList.toggle("active");
+            document.body.classList.toggle("no-scroll");
+        });
+
+        // close menu when clicking link
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                mobileMenu.classList.remove("active");
+                document.body.classList.remove("no-scroll");
+            });
+        });
+
+        // optional: close when clicking outside menu
+        window.addEventListener("click", (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove("active");
+                mobileMenu.classList.remove("active");
+                document.body.classList.remove("no-scroll");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

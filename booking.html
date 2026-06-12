@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CMSTUDIO Booking</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(20px);
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            letter-spacing: 5px;
+        }
+
+        .logo p {
+            font-size: .8rem;
+            letter-spacing: 3px;
+            color: #999;
+        }
+
+        .back-btn {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            opacity: .7;
+        }
+
+        /* HERO */
+
+        .booking-page {
+
+            min-height: 100vh;
+            padding: 50px 8%;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, .75),
+                    rgba(0, 0, 0, .92)),
+
+                url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1974&auto=format&fit=crop');
+
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero span {
+            color: #999;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            margin-top: 15px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 20px auto;
+            color: #bbb;
+        }
+
+        .booking-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .booking-card {
+
+            background: rgba(255, 255, 255, .05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            padding: 35px;
+            border-radius: 30px;
+
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .service {
+
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            padding: 25px;
+            border-radius: 20px;
+
+            cursor: pointer;
+            transition: .35s;
+
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+            border-color: white;
+        }
+
+        .service.active {
+            border-color: white;
+            background: #191919;
+        }
+
+        .service i {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .service p {
+            color: #999;
+            font-size: .9rem;
+            margin-top: 8px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+            padding: 16px;
+
+            background: #111;
+            border: 1px solid #222;
+
+            color: white;
+            border-radius: 15px;
+            outline: none;
+
+        }
+
+        textarea {
+            grid-column: span 2;
+            resize: none;
+        }
+
+        .book-btn {
+
+            margin-top: 20px;
+            width: 100%;
+
+            padding: 18px;
+
+            border: none;
+            border-radius: 50px;
+
+            background: white;
+            color: black;
+
+            font-weight: 700;
+            cursor: pointer;
+
+            transition: .3s;
+
+        }
+
+        .book-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .summary {
+            position: sticky;
+            top: 30px;
+        }
+
+        .summary-box {
+
+            background: rgba(255, 255, 255, .05);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            padding: 30px;
+            border-radius: 30px;
+
+            backdrop-filter: blur(20px);
+
+        }
+
+        .summary-box h3 {
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+
+            display: flex;
+            justify-content: space-between;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+
+        }
+
+        .label {
+            color: #999;
+        }
+
+        .value {
+            font-weight: 600;
+        }
+
+        .total {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .success {
+
+            position: fixed;
+
+            top: 30px;
+            right: 30px;
+
+            background: #16a34a;
+
+            padding: 18px 25px;
+            border-radius: 15px;
+
+            display: none;
+
+            z-index: 9999;
+
+        }
+
+        @media(max-width:900px) {
+
+            .booking-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            textarea {
+                grid-column: span 1;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .summary {
+                position: relative;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+
+        <div class="logo">
+            <h1>CMSTUDIO</h1>
+            <p>PHOTOGRAPHY</p>
+        </div>
+
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Home
+        </a>
+
+    </nav>
+
+    <section class="booking-page">
+
+        <div class="hero">
+
+            <span>CMSTUDIO BOOKING</span>
+
+            <h1>Reserve Your Photography Experience</h1>
+
+            <p>
+                Choose a package, date and location.
+                Let's create something unforgettable.
+            </p>
+
+        </div>
+
+        <div class="booking-wrapper">
+
+            <div class="booking-card">
+
+                <h2 class="section-title">
+                    Choose A Package
+                </h2>
+
+                <div class="services">
+
+                    <div class="service active" data-name="Portrait Photography" data-price="1200"
+                        data-duration="1 Hour" data-photos="20 Edited Photos" data-delivery="3-5 Days">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <h4>Portrait</h4>
+
+                        <p>Perfect for personal branding and portraits.</p>
+
+                    </div>
+
+                    <div class="service" data-name="Graduation Photography" data-price="1800" data-duration="2 Hours"
+                        data-photos="40 Edited Photos" data-delivery="3-5 Days">
+
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                        <h4>Graduation</h4>
+
+                        <p>Celebrate your academic success.</p>
+
+                    </div>
+
+                    <div class="service" data-name="Wedding Photography" data-price="3800" data-duration="Full Day"
+                        data-photos="150+ Edited Photos" data-delivery="5-14 Days">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        <h4>Wedding</h4>
+
+                        <p>Capture every beautiful moment.</p>
+
+                    </div>
+
+                    <div class="service" data-name="Events Photography" data-price="2000" data-duration="3 Hours"
+                        data-photos="60 Edited Photos" data-delivery="5 Days">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        <h4>Events</h4>
+
+                        <p>Corporate, church and private events.</p>
+
+                    </div>
+
+                    <div class="service" data-name="Corporate Branding Photography" data-price="3000"
+                        data-duration="2 Hours" data-photos="30 Edited Photos" data-delivery="5-7 Days">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                        <h4>Corporate Branding</h4>
+
+                        <p>Professional business branding, headshots and marketing content.</p>
+
+                    </div>
+
+                </div>
+
+                <form id="bookingForm">
+
+                    <input type="hidden" name="service" id="serviceInput" value="Portrait Photography">
+
+                    <div class="form-grid">
+
+                        <input type="text" name="name" placeholder="Full Name" required>
+
+                        <input type="email" name="email" placeholder="Email Address" required>
+
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+
+                        <input type="text" name="location" placeholder="Location" required>
+
+                        <input type="date" name="date" required>
+
+                        <input type="time" name="time" required>
+
+                        <textarea rows="5" name="message" placeholder="Additional Information"></textarea>
+
+                    </div>
+
+                    <button class="book-btn">
+                        Book Session
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="summary">
+
+                <div class="summary-box">
+
+                    <h3>Booking Summary</h3>
+
+                    <div class="summary-item">
+                        <span class="label">Package</span>
+                        <span class="value" id="sumPackage">Portrait Photography</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Price</span>
+                        <span class="value" id="sumPrice">R1200</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Duration</span>
+                        <span class="value" id="sumDuration">1 Hour</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Photos</span>
+                        <span class="value" id="sumPhotos">20 Edited Photos</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Delivery</span>
+                        <span class="value" id="sumDelivery">3-5 Days</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Client</span>
+                        <span class="value" id="sumClient">Not Entered</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Phone</span>
+                        <span class="value" id="sumPhone">Not Entered</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Location</span>
+                        <span class="value" id="sumLocation">Not Selected</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Date</span>
+                        <span class="value" id="sumDate">Not Selected</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="label">Time</span>
+                        <span class="value" id="sumTime">Not Selected</span>
+                    </div>
+
+                    <div class="total">
+                        Total: <span id="sumTotal">R1200</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="success" id="success">
+        <i class="fa-solid fa-circle-check"></i>
+        Booking Sent Successfully!
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+
+        /* EMAILJS */
+
+        emailjs.init("sCTlM6ZdGHbO3wxsZ");
+
+        /* PACKAGE SELECTION */
+
+        const services =
+            document.querySelectorAll('.service');
+
+        const serviceInput =
+            document.getElementById('serviceInput');
+
+        services.forEach(service => {
+
+            service.addEventListener('click', () => {
+
+                services.forEach(s =>
+                    s.classList.remove('active')
+                );
+
+                service.classList.add('active');
+
+                const name =
+                    service.dataset.name;
+
+                const price =
+                    service.dataset.price;
+
+                const duration =
+                    service.dataset.duration;
+
+                const photos =
+                    service.dataset.photos;
+
+                const delivery =
+                    service.dataset.delivery;
+
+                serviceInput.value = name;
+
+                document.getElementById('sumPackage')
+                    .innerText = name;
+
+                document.getElementById('sumPrice')
+                    .innerText = 'R' + price;
+
+                document.getElementById('sumDuration')
+                    .innerText = duration;
+
+                document.getElementById('sumPhotos')
+                    .innerText = photos;
+
+                document.getElementById('sumDelivery')
+                    .innerText = delivery;
+
+                document.getElementById('sumTotal')
+                    .innerText = 'R' + price;
+
+            });
+
+        });
+
+        /* LIVE SUMMARY */
+
+        const nameInput =
+            document.querySelector('input[name="name"]');
+
+        const phoneInput =
+            document.querySelector('input[name="phone"]');
+
+        const locationInput =
+            document.querySelector('input[name="location"]');
+
+        const dateInput =
+            document.querySelector('input[name="date"]');
+
+        const timeInput =
+            document.querySelector('input[name="time"]');
+
+        nameInput.addEventListener('input', () => {
+
+            document.getElementById('sumClient')
+                .innerText =
+                nameInput.value || 'Not Entered';
+
+        });
+
+        phoneInput.addEventListener('input', () => {
+
+            document.getElementById('sumPhone')
+                .innerText =
+                phoneInput.value || 'Not Entered';
+
+        });
+
+        locationInput.addEventListener('input', () => {
+
+            document.getElementById('sumLocation')
+                .innerText =
+                locationInput.value || 'Not Selected';
+
+        });
+
+        dateInput.addEventListener('input', () => {
+
+            document.getElementById('sumDate')
+                .innerText =
+                dateInput.value || 'Not Selected';
+
+        });
+
+        timeInput.addEventListener('input', () => {
+
+            document.getElementById('sumTime')
+                .innerText =
+                timeInput.value || 'Not Selected';
+
+        });
+
+        /* EMAIL SUBMIT */
+
+        document
+            .getElementById('bookingForm')
+            .addEventListener('submit', function (e) {
+
+                e.preventDefault();
+
+                const button =
+                    document.querySelector('.book-btn');
+
+                button.disabled = true;
+
+                button.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Sending Booking...';
+
+                emailjs.sendForm(
+                    'service_h6qcyd7',
+                    'template_ac8oi4f',
+                    this
+                )
+
+                    .then(() => {
+
+                        const popup =
+                            document.getElementById('success');
+
+                        popup.style.display =
+                            'block';
+
+                        this.reset();
+
+                        document.getElementById('sumClient')
+                            .innerText = 'Not Entered';
+
+                        document.getElementById('sumPhone')
+                            .innerText = 'Not Entered';
+
+                        document.getElementById('sumLocation')
+                            .innerText = 'Not Selected';
+
+                        document.getElementById('sumDate')
+                            .innerText = 'Not Selected';
+
+                        document.getElementById('sumTime')
+                            .innerText = 'Not Selected';
+
+                        setTimeout(() => {
+
+                            popup.style.display =
+                                'none';
+
+                        }, 4000);
+
+                        button.disabled = false;
+
+                        button.innerHTML =
+                            'Book Session';
+
+                    })
+
+                    .catch(error => {
+
+                        console.error(error);
+
+                        alert(
+                            'Booking failed. Please try again.'
+                        );
+
+                        button.disabled = false;
+
+                        button.innerHTML =
+                            'Book Session';
+
+                    });
+
+            });
+
+    </script>
+
+</body>
+
+</html>

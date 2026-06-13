@@ -519,203 +519,263 @@
 
     <script>
 
-        /* EMAILJS */
+/* EMAILJS */
 
-        emailjs.init("sCTlM6ZdGHbO3wxsZ");
+emailjs.init("sCTlM6ZdGHbO3wxsZ");
 
-        /* PACKAGE SELECTION */
+/* PACKAGE SELECTION */
 
-        const services =
-            document.querySelectorAll('.service');
+const services =
+document.querySelectorAll('.service');
 
-        const serviceInput =
-            document.getElementById('serviceInput');
+const serviceInput =
+document.getElementById('serviceInput');
 
-        services.forEach(service => {
+services.forEach(service => {
 
-            service.addEventListener('click', () => {
+    service.addEventListener('click', () => {
 
-                services.forEach(s =>
-                    s.classList.remove('active')
-                );
+        services.forEach(s =>
+            s.classList.remove('active')
+        );
 
-                service.classList.add('active');
+        service.classList.add('active');
 
-                const name =
-                    service.dataset.name;
+        const name =
+            service.dataset.name;
 
-                const price =
-                    service.dataset.price;
+        const price =
+            service.dataset.price;
 
-                const duration =
-                    service.dataset.duration;
+        const duration =
+            service.dataset.duration;
 
-                const photos =
-                    service.dataset.photos;
+        const photos =
+            service.dataset.photos;
 
-                const delivery =
-                    service.dataset.delivery;
+        const delivery =
+            service.dataset.delivery;
 
-                serviceInput.value = name;
+        serviceInput.value = name;
 
-                document.getElementById('sumPackage')
-                    .innerText = name;
+        document.getElementById('sumPackage')
+            .innerText = name;
 
-                document.getElementById('sumPrice')
-                    .innerText = 'R' + price;
+        document.getElementById('sumPrice')
+            .innerText = 'R' + price;
 
-                document.getElementById('sumDuration')
-                    .innerText = duration;
+        document.getElementById('sumDuration')
+            .innerText = duration;
 
-                document.getElementById('sumPhotos')
-                    .innerText = photos;
+        document.getElementById('sumPhotos')
+            .innerText = photos;
 
-                document.getElementById('sumDelivery')
-                    .innerText = delivery;
+        document.getElementById('sumDelivery')
+            .innerText = delivery;
 
-                document.getElementById('sumTotal')
-                    .innerText = 'R' + price;
+        document.getElementById('sumTotal')
+            .innerText = 'R' + price;
 
-            });
+    });
 
-        });
+});
 
-        /* LIVE SUMMARY */
+/* LIVE SUMMARY */
 
-        const nameInput =
-            document.querySelector('input[name="name"]');
+const nameInput =
+document.querySelector('input[name="name"]');
 
-        const phoneInput =
-            document.querySelector('input[name="phone"]');
+const phoneInput =
+document.querySelector('input[name="phone"]');
 
-        const locationInput =
-            document.querySelector('input[name="location"]');
+const locationInput =
+document.querySelector('input[name="location"]');
 
-        const dateInput =
-            document.querySelector('input[name="date"]');
+const dateInput =
+document.querySelector('input[name="date"]');
 
-        const timeInput =
-            document.querySelector('input[name="time"]');
+const timeInput =
+document.querySelector('input[name="time"]');
 
-        nameInput.addEventListener('input', () => {
+const emailInput =
+document.querySelector('input[name="email"]');
 
-            document.getElementById('sumClient')
-                .innerText =
-                nameInput.value || 'Not Entered';
+nameInput.addEventListener('input', () => {
 
-        });
+    document.getElementById('sumClient')
+        .innerText =
+        nameInput.value || 'Not Entered';
 
-        phoneInput.addEventListener('input', () => {
+});
 
-            document.getElementById('sumPhone')
-                .innerText =
-                phoneInput.value || 'Not Entered';
+phoneInput.addEventListener('input', () => {
 
-        });
+    document.getElementById('sumPhone')
+        .innerText =
+        phoneInput.value || 'Not Entered';
 
-        locationInput.addEventListener('input', () => {
+});
 
-            document.getElementById('sumLocation')
-                .innerText =
-                locationInput.value || 'Not Selected';
+locationInput.addEventListener('input', () => {
 
-        });
+    document.getElementById('sumLocation')
+        .innerText =
+        locationInput.value || 'Not Selected';
 
-        dateInput.addEventListener('input', () => {
+});
 
-            document.getElementById('sumDate')
-                .innerText =
-                dateInput.value || 'Not Selected';
+dateInput.addEventListener('input', () => {
 
-        });
+    document.getElementById('sumDate')
+        .innerText =
+        dateInput.value || 'Not Selected';
 
-        timeInput.addEventListener('input', () => {
+});
 
-            document.getElementById('sumTime')
-                .innerText =
-                timeInput.value || 'Not Selected';
+timeInput.addEventListener('input', () => {
 
-        });
+    document.getElementById('sumTime')
+        .innerText =
+        timeInput.value || 'Not Selected';
 
-        /* EMAIL SUBMIT */
+});
+
+/* EMAIL SUBMIT */
+
+document
+.getElementById('bookingForm')
+.addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    const button =
+    document.querySelector('.book-btn');
+
+    button.disabled = true;
+
+    button.innerHTML =
+    '<i class="fa-solid fa-spinner fa-spin"></i> Sending Booking...';
+
+    const bookingID =
+    'CMS-' + Date.now();
+
+    const bookingData = {
+
+        booking_id: bookingID,
+
+        name:
+        nameInput.value,
+
+        email:
+        emailInput.value,
+
+        phone:
+        phoneInput.value,
+
+        service:
+        serviceInput.value,
+
+        location:
+        locationInput.value,
+
+        date:
+        dateInput.value,
+
+        time:
+        timeInput.value,
+
+        message:
+        document.querySelector(
+        'textarea[name="message"]'
+        ).value
+
+    };
+
+    /* SEND EMAIL TO CMSTUDIO */
+
+    emailjs.send(
+        'service_h6qcyd7',
+        'template_ac8oi4f',
+        bookingData
+    )
+
+    .then(() => {
+
+        /* SEND CONFIRMATION EMAIL TO CLIENT */
+
+        return emailjs.send(
+            'service_h6qcyd7',
+            'template_a6dgnes',
+            bookingData
+        );
+
+    })
+
+    .then(() => {
+
+        const popup =
+        document.getElementById('success');
+
+        popup.innerHTML =
+        '<i class="fa-solid fa-circle-check"></i> Booking Sent Successfully!';
+
+        popup.style.display =
+        'block';
 
         document
-            .getElementById('bookingForm')
-            .addEventListener('submit', function (e) {
+        .getElementById('bookingForm')
+        .reset();
 
-                e.preventDefault();
+        document.getElementById('sumClient')
+        .innerText = 'Not Entered';
 
-                const button =
-                    document.querySelector('.book-btn');
+        document.getElementById('sumPhone')
+        .innerText = 'Not Entered';
 
-                button.disabled = true;
+        document.getElementById('sumLocation')
+        .innerText = 'Not Selected';
 
-                button.innerHTML =
-                    '<i class="fa-solid fa-spinner fa-spin"></i> Sending Booking...';
+        document.getElementById('sumDate')
+        .innerText = 'Not Selected';
 
-                emailjs.sendForm(
-                    'service_h6qcyd7',
-                    'template_ac8oi4f',
-                    this
-                )
+        document.getElementById('sumTime')
+        .innerText = 'Not Selected';
 
-                    .then(() => {
+        setTimeout(() => {
 
-                        const popup =
-                            document.getElementById('success');
+            popup.style.display =
+            'none';
 
-                        popup.style.display =
-                            'block';
+        }, 4000);
 
-                        this.reset();
+        button.disabled = false;
 
-                        document.getElementById('sumClient')
-                            .innerText = 'Not Entered';
+        button.innerHTML =
+        'Book Session';
 
-                        document.getElementById('sumPhone')
-                            .innerText = 'Not Entered';
+    })
 
-                        document.getElementById('sumLocation')
-                            .innerText = 'Not Selected';
+    .catch(error => {
 
-                        document.getElementById('sumDate')
-                            .innerText = 'Not Selected';
+        console.error(
+        'EmailJS Error:',
+        error
+        );
 
-                        document.getElementById('sumTime')
-                            .innerText = 'Not Selected';
+        alert(
+        'Booking failed. Please try again.'
+        );
 
-                        setTimeout(() => {
+        button.disabled = false;
 
-                            popup.style.display =
-                                'none';
+        button.innerHTML =
+        'Book Session';
 
-                        }, 4000);
+    });
 
-                        button.disabled = false;
+});
 
-                        button.innerHTML =
-                            'Book Session';
-
-                    })
-
-                    .catch(error => {
-
-                        console.error(error);
-
-                        alert(
-                            'Booking failed. Please try again.'
-                        );
-
-                        button.disabled = false;
-
-                        button.innerHTML =
-                            'Book Session';
-
-                    });
-
-            });
-
-    </script>
+</script>
 
 </body>
 

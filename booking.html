@@ -169,6 +169,48 @@
             margin-top: 8px;
         }
 
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .package {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .package:hover {
+            transform: translateY(-5px);
+            border-color: white;
+        }
+
+        .package.active {
+            border-color: white;
+            background: #1b1b1b;
+        }
+
+        .package ul {
+            list-style: none;
+            margin-top: 15px;
+            color: #aaa;
+        }
+
+        .package ul li {
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -526,16 +568,6 @@
 
                     </div>
 
-                    <div class="service" data-name="Events Photography" data-price="2000" data-duration="3 Hours"
-                        data-photos="60 Edited Photos" data-delivery="5 Days">
-
-                        <i class="fa-solid fa-camera"></i>
-
-                        <h4>Events</h4>
-
-                        <p>Corporate, church and private events.</p>
-
-                    </div>
 
                     <div class="service" data-name="Corporate Branding Photography" data-price="3000"
                         data-duration="2 Hours" data-photos="30 Edited Photos" data-delivery="5-7 Days">
@@ -545,6 +577,80 @@
                         <h4>Corporate Branding</h4>
 
                         <p>Professional business branding, headshots and marketing content.</p>
+
+                    </div>
+
+                    <div class="service" data-name="Events Photography" data-price="800" data-duration="1 Hour"
+                        data-photos="30 Edited Photos" data-delivery="3 Days">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        <h4>Events Photography</h4>
+
+                        <p>Church events, conferences, birthdays, celebrations and corporate functions.</p>
+
+                    </div>
+                    <div id="eventPackages" style="display:none; margin-bottom:30px;">
+
+                        <h2 class="section-title">
+                            Choose Event Package
+                        </h2>
+
+                        <div class="packages">
+
+                            <div class="package active" data-package="Silver Package" data-price="800"
+                                data-duration="1 Hour" data-photos="30 Edited Pictures" data-delivery="3 Days">
+
+                                <h3>Silver Package</h3>
+
+                                <ul>
+                                    <li>30 Edited Pictures</li>
+                                    <li>1 Hour Session</li>
+                                </ul>
+
+                                <div class="package-price">
+                                    R800
+                                </div>
+
+                            </div>
+
+                            <div class="package" data-package="Gold Package" data-price="1600" data-duration="2½ Hours"
+                                data-photos="60 Edited Pictures" data-delivery="3 Days">
+
+                                <h3>Gold Package</h3>
+
+                                <ul>
+                                    <li>60 Edited Pictures</li>
+                                    <li>2½ Hour Session</li>
+                                </ul>
+
+                                <div class="package-price">
+                                    R1600
+                                </div>
+
+                            </div>
+
+                            <div class="package" data-package="Platinum Package" data-price="2500"
+                                data-duration="Unlimited" data-photos="Unlimited Pictures" data-delivery="5 Days">
+
+                                <h3>Platinum Package</h3>
+
+                                <ul>
+                                    <li>Unlimited Pictures</li>
+                                    <li>Unlimited Hours</li>
+                                    <li>1 A2 Canvas Picture</li>
+                                    <li>A4 Photo Magazine</li>
+                                </ul>
+
+                                <div class="package-price">
+                                    R2500
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" id="packageInput" name="package" value="Silver Package">
 
                     </div>
 
@@ -708,278 +814,369 @@
 
     <script>
 
-/* EMAILJS */
+        /* EMAILJS */
 
-emailjs.init("sCTlM6ZdGHbO3wxsZ");
+        emailjs.init("sCTlM6ZdGHbO3wxsZ");
 
-/* PACKAGE SELECTION */
+        /* PACKAGE SELECTION */
 
-const services =
-document.querySelectorAll('.service');
+        const services =
+            document.querySelectorAll('.service');
 
-const serviceInput =
-document.getElementById('serviceInput');
+        const serviceInput =
+            document.getElementById('serviceInput');
 
-services.forEach(service => {
+        services.forEach(service => {
 
-    service.addEventListener('click', () => {
+            service.addEventListener('click', () => {
 
-        services.forEach(s =>
-            s.classList.remove('active')
-        );
+                const name =
+                    service.dataset.name;
 
-        service.classList.add('active');
+                const price =
+                    service.dataset.price;
 
-        const name =
-            service.dataset.name;
+                const duration =
+                    service.dataset.duration;
 
-        const price =
-            service.dataset.price;
+                const photos =
+                    service.dataset.photos;
 
-        const duration =
-            service.dataset.duration;
+                const delivery =
+                    service.dataset.delivery;
 
-        const photos =
-            service.dataset.photos;
+                /* SHOW EVENT PACKAGES */
 
-        const delivery =
-            service.dataset.delivery;
+                const eventPackages =
+                    document.getElementById('eventPackages');
 
-        serviceInput.value = name;
+                if (eventPackages) {
 
-        document.getElementById('sumPackage')
-            .innerText = name;
+                    if (name === 'Events Photography') {
 
-        document.getElementById('sumPrice')
-            .innerText = 'R' + price;
+                        eventPackages.style.display =
+                            'block';
 
-        document.getElementById('sumDuration')
-            .innerText = duration;
+                    } else {
 
-        document.getElementById('sumPhotos')
-            .innerText = photos;
+                        eventPackages.style.display =
+                            'none';
 
-        document.getElementById('sumDelivery')
-            .innerText = delivery;
+                    }
 
-        document.getElementById('sumTotal')
-            .innerText = 'R' + price;
+                }
 
-    });
+                /* ACTIVE CARD */
 
-});
+                services.forEach(s =>
+                    s.classList.remove('active')
+                );
 
-/* LIVE SUMMARY */
+                service.classList.add('active');
 
-const nameInput =
-document.querySelector('input[name="name"]');
+                serviceInput.value = name;
 
-const phoneInput =
-document.querySelector('input[name="phone"]');
+                /* UPDATE SUMMARY */
 
-const locationInput =
-document.querySelector('input[name="location"]');
+                document.getElementById('sumPackage')
+                    .innerText = name;
 
-const dateInput =
-document.querySelector('input[name="date"]');
+                document.getElementById('sumPrice')
+                    .innerText = 'R' + price;
 
-const timeInput =
-document.querySelector('input[name="time"]');
+                document.getElementById('sumDuration')
+                    .innerText = duration;
 
-const emailInput =
-document.querySelector('input[name="email"]');
+                document.getElementById('sumPhotos')
+                    .innerText = photos;
 
-nameInput.addEventListener('input', () => {
+                document.getElementById('sumDelivery')
+                    .innerText = delivery;
 
-    document.getElementById('sumClient')
-        .innerText =
-        nameInput.value || 'Not Entered';
+                document.getElementById('sumTotal')
+                    .innerText = 'R' + price;
 
-});
+            });
 
-phoneInput.addEventListener('input', () => {
+        });
 
-    document.getElementById('sumPhone')
-        .innerText =
-        phoneInput.value || 'Not Entered';
 
-});
+        /* EVENT PACKAGE SELECTION */
 
-locationInput.addEventListener('input', () => {
+        const packages =
+            document.querySelectorAll('.package');
 
-    document.getElementById('sumLocation')
-        .innerText =
-        locationInput.value || 'Not Selected';
+        const packageInput =
+            document.getElementById('packageInput');
 
-});
+        /* ✅ ADD THIS: stores selected package */
+        let selectedPackage = "";
 
-dateInput.addEventListener('input', () => {
+        packages.forEach(pkg => {
 
-    document.getElementById('sumDate')
-        .innerText =
-        dateInput.value || 'Not Selected';
+            pkg.addEventListener('click', () => {
 
-});
+                packages.forEach(p =>
+                    p.classList.remove('active')
+                );
 
-timeInput.addEventListener('input', () => {
+                pkg.classList.add('active');
 
-    document.getElementById('sumTime')
-        .innerText =
-        timeInput.value || 'Not Selected';
+                const packageName =
+                    pkg.dataset.package;
 
-});
+                const price =
+                    pkg.dataset.price;
 
-/* FORM SUBMIT */
+                const duration =
+                    pkg.dataset.duration;
 
-document
-.getElementById('bookingForm')
-.addEventListener('submit', function(e){
+                const photos =
+                    pkg.dataset.photos;
 
-    e.preventDefault();
+                const delivery =
+                    pkg.dataset.delivery;
 
-    const button =
-    document.querySelector('.book-btn');
+                /* ✅ STORE FOR EMAILJS */
+                selectedPackage = packageName;
 
-    button.disabled = true;
+                if (packageInput) {
+                    packageInput.value = packageName;
+                }
 
-    button.innerHTML =
-    '<i class="fa-solid fa-spinner fa-spin"></i> Sending Booking...';
+                document.getElementById('sumPackage')
+                    .innerText = packageName;
 
-    const bookingID =
-    'CMS-' + Date.now();
+                document.getElementById('sumPrice')
+                    .innerText = 'R' + price;
 
-    const bookingData = {
+                document.getElementById('sumDuration')
+                    .innerText = duration;
 
-        booking_id: bookingID,
+                document.getElementById('sumPhotos')
+                    .innerText = photos;
 
-        name: nameInput.value,
+                document.getElementById('sumDelivery')
+                    .innerText = delivery;
 
-        email: emailInput.value,
+                document.getElementById('sumTotal')
+                    .innerText = 'R' + price;
 
-        phone: phoneInput.value,
+            });
 
-        service: serviceInput.value,
+        });
 
-        location: locationInput.value,
+        /* LIVE SUMMARY */
 
-        date: dateInput.value,
+        const nameInput =
+            document.querySelector('input[name="name"]');
 
-        time: timeInput.value,
+        const phoneInput =
+            document.querySelector('input[name="phone"]');
 
-        message:
-        document.querySelector(
-        'textarea[name="message"]'
-        ).value
+        const locationInput =
+            document.querySelector('input[name="location"]');
 
-    };
+        const dateInput =
+            document.querySelector('input[name="date"]');
 
-    /* SEND TO CMSTUDIO */
+        const timeInput =
+            document.querySelector('input[name="time"]');
 
-    emailjs.send(
-        'service_h6qcyd7',
-        'template_ac8oi4f',
-        bookingData
-    )
+        const emailInput =
+            document.querySelector('input[name="email"]');
 
-    .then(() => {
+        nameInput.addEventListener('input', () => {
 
-        /* SEND TO CLIENT */
+            document.getElementById('sumClient')
+                .innerText =
+                nameInput.value || 'Not Entered';
 
-        return emailjs.send(
-            'service_h6qcyd7',
-            'template_a6dgnes',
-            bookingData
-        );
+        });
 
-    })
+        phoneInput.addEventListener('input', () => {
 
-    .then(() => {
+            document.getElementById('sumPhone')
+                .innerText =
+                phoneInput.value || 'Not Entered';
 
-        /* SUCCESS MODAL */
+        });
 
-        document.getElementById(
-        'successReference'
-        ).innerText = bookingID;
+        locationInput.addEventListener('input', () => {
 
-        document.getElementById(
-        'successPackage'
-        ).innerText = bookingData.service;
+            document.getElementById('sumLocation')
+                .innerText =
+                locationInput.value || 'Not Selected';
 
-        document.getElementById(
-        'successDate'
-        ).innerText = bookingData.date;
+        });
 
-        document.getElementById(
-        'bookingSuccess'
-        ).style.display = 'flex';
+        dateInput.addEventListener('input', () => {
 
-        /* RESET FORM */
+            document.getElementById('sumDate')
+                .innerText =
+                dateInput.value || 'Not Selected';
+
+        });
+
+        timeInput.addEventListener('input', () => {
+
+            document.getElementById('sumTime')
+                .innerText =
+                timeInput.value || 'Not Selected';
+
+        });
+
+        /* FORM SUBMIT */
 
         document
-        .getElementById('bookingForm')
-        .reset();
+            .getElementById('bookingForm')
+            .addEventListener('submit', function (e) {
 
-        document.getElementById('sumClient')
-        .innerText = 'Not Entered';
+                e.preventDefault();
 
-        document.getElementById('sumPhone')
-        .innerText = 'Not Entered';
+                const button =
+                    document.querySelector('.book-btn');
 
-        document.getElementById('sumLocation')
-        .innerText = 'Not Selected';
+                button.disabled = true;
 
-        document.getElementById('sumDate')
-        .innerText = 'Not Selected';
+                button.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Sending Booking...';
 
-        document.getElementById('sumTime')
-        .innerText = 'Not Selected';
+                const bookingID =
+                    'CMS-' + Date.now();
 
-        document.getElementById('sumPackage')
-        .innerText = 'Portrait Photography';
+                const bookingData = {
 
-        document.getElementById('sumPrice')
-        .innerText = 'R1200';
+                    booking_id: bookingID,
 
-        document.getElementById('sumDuration')
-        .innerText = '1 Hour';
+                    name: nameInput.value,
 
-        document.getElementById('sumPhotos')
-        .innerText = '20 Edited Photos';
+                    email: emailInput.value,
 
-        document.getElementById('sumDelivery')
-        .innerText = '3-5 Days';
+                    phone: phoneInput.value,
 
-        document.getElementById('sumTotal')
-        .innerText = 'R1200';
+                    service: serviceInput.value,
 
-        button.disabled = false;
+                    location: locationInput.value,
 
-        button.innerHTML =
-        'Book Session';
+                    date: dateInput.value,
 
-    })
+                    time: timeInput.value,
 
-    .catch(error => {
+                    message:
+                        document.querySelector(
+                            'textarea[name="message"]'
+                        ).value
 
-        console.error(
-        'EmailJS Error:',
-        error
-        );
+                };
 
-        alert(
-        'Booking failed. Please try again.'
-        );
+                /* SEND TO CMSTUDIO */
 
-        button.disabled = false;
+                emailjs.send(
+                    'service_h6qcyd7',
+                    'template_ac8oi4f',
+                    bookingData
+                )
 
-        button.innerHTML =
-        'Book Session';
+                    .then(() => {
 
-    });
+                        /* SEND TO CLIENT */
 
-});
+                        return emailjs.send(
+                            'service_h6qcyd7',
+                            'template_a6dgnes',
+                            bookingData
+                        );
 
-</script>
+                    })
+
+                    .then(() => {
+
+                        /* SUCCESS MODAL */
+
+                        document.getElementById(
+                            'successReference'
+                        ).innerText = bookingID;
+
+                        document.getElementById(
+                            'successPackage'
+                        ).innerText = bookingData.service;
+
+                        document.getElementById(
+                            'successDate'
+                        ).innerText = bookingData.date;
+
+                        document.getElementById(
+                            'bookingSuccess'
+                        ).style.display = 'flex';
+
+                        /* RESET FORM */
+
+                        document
+                            .getElementById('bookingForm')
+                            .reset();
+
+                        document.getElementById('sumClient')
+                            .innerText = 'Not Entered';
+
+                        document.getElementById('sumPhone')
+                            .innerText = 'Not Entered';
+
+                        document.getElementById('sumLocation')
+                            .innerText = 'Not Selected';
+
+                        document.getElementById('sumDate')
+                            .innerText = 'Not Selected';
+
+                        document.getElementById('sumTime')
+                            .innerText = 'Not Selected';
+
+                        document.getElementById('sumPackage')
+                            .innerText = 'Portrait Photography';
+
+                        document.getElementById('sumPrice')
+                            .innerText = 'R1200';
+
+                        document.getElementById('sumDuration')
+                            .innerText = '1 Hour';
+
+                        document.getElementById('sumPhotos')
+                            .innerText = '20 Edited Photos';
+
+                        document.getElementById('sumDelivery')
+                            .innerText = '3-5 Days';
+
+                        document.getElementById('sumTotal')
+                            .innerText = 'R1200';
+
+                        button.disabled = false;
+
+                        button.innerHTML =
+                            'Book Session';
+
+                    })
+
+                    .catch(error => {
+
+                        console.error(
+                            'EmailJS Error:',
+                            error
+                        );
+
+                        alert(
+                            'Booking failed. Please try again.'
+                        );
+
+                        button.disabled = false;
+
+                        button.innerHTML =
+                            'Book Session';
+
+                    });
+
+            });
+
+    </script>
 
 </body>
 
